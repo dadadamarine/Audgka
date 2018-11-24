@@ -1,0 +1,14 @@
+{
+  "name": "audgka",
+  "version": "1.0.0",
+  "description": "audgka",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dadadamarine",
+  "license": "ISC",
+  "dependencies": {
+    "underscore": "^1.9.1"
+  }
+}
