@@ -10,10 +10,22 @@ app.use(bodyParser.urlencoded({extended:false})); //이 app으로 들어오는 �
 //bodyParser: 가장 앞에서 동작, 사용자가 post로 보낸 요청이 있다면 , req객체가 원래 가지고 있지 않던 body를 추가함.
 app.set('view engine', 'ejs'); // 뷰 엔진으로 ejs사용 //app.set('views', './views');
 
-app.get('',(req,res)=>{
 
-    res.send("");
-})
+
+
+app.get("/", (req,res)=>{ // 라우터
+    res.send("Hello home page");
+});
+
+
+app.get("/admit", (req, res)=>{
+    res.send('hi admit, <img src="/admit.jpg"></img>');
+});
+
+app.get("/login", (req,res)=>{ // 라우터
+    res.send("Hello login page");
+});
+
 
 app.get('/form', (req,res)=>{
     res.render('form.ejs');
@@ -35,17 +47,12 @@ app.post('/form_receiver', (req,res)=>{
     res.send(text+ " , " + textarea+ " , " + "by POST");
 });
 
-app.get("/", (req,res)=>{ // 라우터
-    res.send("Hello home page");
+app.get("/item",(req,res)=>{
+    res.render('item.ejs');
 });
 
-app.get("/admit", (req, res)=>{
-    res.send('hi admit, <img src="/admit.jpg"></img>');
-});
 
-app.get("/login", (req,res)=>{ // 라우터
-    res.send("Hello login page");
-});
+
 
 app.listen(3000, ()=>{
     console.log("Connected 3000 port");

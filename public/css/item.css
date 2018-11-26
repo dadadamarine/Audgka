@@ -3,3 +3,20 @@ body{
     padding:0;
     background: #708d00;
 }
+
+.card{
+    width:300px;
+    height:400px;
+    margin:30px auto;
+    position: relative;
+
+    background:#fff;
+    box-shadow:inset 300px 0 50px rgba(0,0,0,0.5), 0 20px 100px rgba(0,0,0,0.5);
+    transform-style: preserve-3d;
+    transform : perspective(2000px);
+    transition:1s;
+}
+.card:hover{
+    transform : perspective(2000px) rotate(-10deg);
+    box-shadow:inset 20px 0 50px rgba(0,0,0,0.5), 0 10px 100px rgba(0,0,0,0.5);
+}
