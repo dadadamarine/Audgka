@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express(); // 익스프레스 모듈에서 함수를 가져오고, 그 함수를 실행하면 app을 반환
 var bodyParser = require('body-parser');
+var mysql = require("mysql");
 
 //정적인 파일의 위치 디렉토리를 지정
 //public폴더에 정적인 파일 가져다 두면, 사용자 에게 정적인 파일을 서비스 할 수 있음.    
@@ -9,6 +10,27 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:false})); //이 app으로 들어오는 모든 요청은 이 미들웨어를 먼저 통과한 후에 라우터가 동작하게 됨
 //bodyParser: 가장 앞에서 동작, 사용자가 post로 보낸 요청이 있다면 , req객체가 원래 가지고 있지 않던 body를 추가함.
 app.set('view engine', 'ejs'); // 뷰 엔진으로 ejs사용 //app.set('views', './views');
+
+
+
+var connection = mysql.createConnection({
+    host : 'localhost',
+    user : 'root',
+    password : '123456',
+    database : 'o2'
+});
+
+connection.connect();
+var sql = "SELECT * FROM topic";
+connection.query(sql, (err, rows, fields)=>{
+    if(err) console.log(err);
+    else{
+        //console.log('rows', rows);
+        //console.log('fields', fields);
+    }
+} );
+
+connection.end();
 
 
 
@@ -33,6 +55,9 @@ app.get("/login", (req,res)=>{ // 라우터
     res.render('login.ejs');
 });
 
+app.post("/login", (req,res)=>{
+    res.render('main.ejs')
+})
 
 app.get('/form', (req,res)=>{
     res.render('form.ejs');
