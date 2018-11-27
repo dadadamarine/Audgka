@@ -19,7 +19,7 @@ body{
     margin:20px;
     position: relative;
     float:left;
-
+    z-index: 1;
     background:#fff;
     box-shadow:inset 300px 0 50px rgba(0,0,0,0.5), 0 20px 100px rgba(0,0,0,0.5);
     transform-style: preserve-3d;
@@ -102,7 +102,7 @@ body{
     position: absolute;
     width:100%;
     height:20px;
-    top:360px;
+    top:368px;
     left:0;
     background:url("../img/item/bar.png");
     background-size: cover;

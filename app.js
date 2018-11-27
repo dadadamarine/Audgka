@@ -10,7 +10,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:false})); //이 app으로 들어오는 모든 요청은 이 미들웨어를 먼저 통과한 후에 라우터가 동작하게 됨
 //bodyParser: 가장 앞에서 동작, 사용자가 post로 보낸 요청이 있다면 , req객체가 원래 가지고 있지 않던 body를 추가함.
 app.set('view engine', 'ejs'); // 뷰 엔진으로 ejs사용 //app.set('views', './views');
-
+app.set('views', './views'); // 노드가 템플릿 파일을 찾을때, views폴더 안에있는 경로로 템플릿 파일을 찾게됨 // 안적어도 됨.
 
 
 var connection = mysql.createConnection({
@@ -21,16 +21,30 @@ var connection = mysql.createConnection({
 });
 
 connection.connect();
-var sql = "SELECT * FROM topic";
-connection.query(sql, (err, rows, fields)=>{
+
+
+/*조회 :  var sql = "SELECT * FROM topic";
+
+/*삽입 :  var sql = "INSERT INTO topic (author, title, description) VALUES('kdj', 'swift', 'mac programing la..')";
+
+/*삽입 :  var sql = "INSERT INTO topic (author, title, description) VALUES(?,?,?)";
+var params= ['supervisor', 'watcher', 'ddfajknskef'];
+
+/*변경 :  var sql = "UPDATE topic SET title=?, author=? WHERE id=?";
+var params= ['NPM', 'kdj', '1']; */
+
+/* var sql = "DELETE FROM topic WHERE id=?";
+var params=[1]; */
+
+/* connection.query(sql, params, (err,rows,fields)=>{
     if(err) console.log(err);
     else{
-        //console.log('rows', rows);
-        //console.log('fields', fields);
+        console.log('rows', rows);
     }
-} );
+}); */
 
-connection.end();
+
+
 
 
 
@@ -47,10 +61,6 @@ app.get("/item",(req,res)=>{
 });
 
 
-app.get("/admit", (req, res)=>{
-    res.send('hi admit, <img src="/admit.jpg"></img>');
-});
-
 app.get("/login", (req,res)=>{ // 라우터
     res.render('login.ejs');
 });
@@ -58,6 +68,38 @@ app.get("/login", (req,res)=>{ // 라우터
 app.post("/login", (req,res)=>{
     res.render('main.ejs')
 })
+
+
+
+
+app.get(['/topic', '/topic/:id'], (req,res)=>{
+    
+    var sql = "SELECT id, title FROM topic;";
+    connection.query(sql, (err, topics, fields)=>{
+        
+        if(err) console.log(err);
+        else{
+            var id= req.params.id;
+            if(id){
+                var sql = "SELECT * FROM topic WHERE id=?";
+                connection.query(sql, [id], (err, topic, fields)=>{
+                    if(err) console.log(err);
+                    else{
+                        res.render('topic.ejs', {topics : topics , topic: topic[0]}); // 토픽은 한개여도 배열로 리턴됨 
+                    }
+                });
+            }else{
+                res.render('topic.ejs', {topics : topics, topic:""} );  
+            }
+        }
+    });
+});
+
+
+
+app.get("/admit", (req, res)=>{
+    res.send('hi admit, <img src="/admit.jpg"></img>');
+});
 
 app.get('/form', (req,res)=>{
     res.render('form.ejs');
