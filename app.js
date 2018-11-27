@@ -12,8 +12,11 @@ app.set('view engine', 'ejs'); // 뷰 엔진으로 ejs사용 //app.set('views', 
 
 
 
+app.get("/",(req,res)=>{
+    res.render('intro.ejs');
+});
 
-app.get("/", (req,res)=>{ // 라우터
+app.get("/main", (req,res)=>{ // 라우터
     res.render('main.ejs');
 });
 
@@ -27,7 +30,7 @@ app.get("/admit", (req, res)=>{
 });
 
 app.get("/login", (req,res)=>{ // 라우터
-    res.send("Hello login page");
+    res.render('login.ejs');
 });
 
 
