@@ -12,7 +12,7 @@ body{
     height:80px;
     padding:3px 40px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
-
+    background-color: white;
 }
 .navigation-bar__logo{
     height:40px;
