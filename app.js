@@ -14,7 +14,11 @@ app.set('view engine', 'ejs'); // 뷰 엔진으로 ejs사용 //app.set('views', 
 
 
 app.get("/", (req,res)=>{ // 라우터
-    res.send("Hello home page");
+    res.render('main.ejs');
+});
+
+app.get("/item",(req,res)=>{
+    res.render('item.ejs');
 });
 
 
@@ -47,9 +51,7 @@ app.post('/form_receiver', (req,res)=>{
     res.send(text+ " , " + textarea+ " , " + "by POST");
 });
 
-app.get("/item",(req,res)=>{
-    res.render('item.ejs');
-});
+
 
 
 
