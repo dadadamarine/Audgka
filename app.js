@@ -77,7 +77,10 @@ app.get(['/topic', '/topic/:id'], (req,res)=>{
     var sql = "SELECT id, title FROM topic;";
     connection.query(sql, (err, topics, fields)=>{
         
-        if(err) console.log(err);
+        if(err) {
+            console.log(err);
+            res.status(500).send("Internal server error");
+        }
         else{
             var id= req.params.id;
             if(id){
