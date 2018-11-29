@@ -31,14 +31,14 @@
                     <!-- <img src="https://image.ibb.co/cO9Lxq/login-bg.jpg
                     " alt=""> -->
                 </div>
-                <form action="/login" method="post">
+                <form action="/auth/login" method="post">
                     <div class="login-box__id">
                         <label>Email Or Username</label>
-                        <input type="text">
+                        <input name="userId" type="text">
                     </div>
                     <div class="login-box__password">
                         <label>Password</label>
-                        <input type="password">
+                        <input name="userPW" type="password">
                     </div>
                     <button type="submit" class="login-button login-button--long-orange">Sign In</button>
                 </form>

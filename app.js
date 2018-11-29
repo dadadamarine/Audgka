@@ -3,6 +3,7 @@ var express = require('express');
 var app = express(); // 익스프레스 모듈에서 함수를 가져오고, 그 함수를 실행하면 app을 반환
 var bodyParser = require('body-parser');
 var mysql = require("mysql");
+var js_sha2 = require("sha256");
 
 //정적인 파일의 위치 디렉토리를 지정
 //public폴더에 정적인 파일 가져다 두면, 사용자 에게 정적인 파일을 서비스 할 수 있음.    
@@ -61,12 +62,34 @@ app.get("/item",(req,res)=>{
 });
 
 
-app.get("/auth/login", (req,res)=>{ // 라우터
+app.get("/auth/login", (req,res)=>{ // 라우터 , 로그인 페이지
     res.render('login.ejs');
 });
 
-app.post("/auth/login", (req,res)=>{
-    res.render('main.ejs');
+app.post("/auth/login", (req,res)=>{ // 로그인 요청
+    var sql = "SELECT pw, name FROM user WHERE userId = ?";
+    var userId= req.body.userId;
+    var userPW = req.body.userPW;
+    var userName = req.body.userName;
+    connection.query(sql, [userId], (err, rows, field)=>{
+        if(err){
+            console.log(err);
+            res.status(500).send("Internal server error");
+        }else{
+            if(!rows[0]){
+                //아이디가 올바르지 않음.
+                res.redirect('/auth/login');
+            }else if(js_sha2(userPW) === rows[0].pw){
+                // 성공
+                console.log(new Date() ," 로그인 : " , userId );
+                res.redirect('/main');
+            }else{
+                // 비밀번호 오류
+                console.log(new Date() ," 비밀번호 오류 : " , userId );
+                res.redirect('/auth/login');
+            }
+        }
+    });
 });
 
 app.get("/auth/signup", (req,res)=>{
@@ -143,6 +166,10 @@ app.post('/topic', (req,res)=>{
     });
 })
 
+
+app.get("/audgka/:id", (req, res)=>{
+    res.render('audgka.ejs');
+});
 
 
 
