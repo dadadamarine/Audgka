@@ -61,20 +61,49 @@ app.get("/item",(req,res)=>{
 });
 
 
-app.get("/login", (req,res)=>{ // 라우터
+app.get("/auth/login", (req,res)=>{ // 라우터
     res.render('login.ejs');
 });
 
-app.post("/login", (req,res)=>{
-    res.render('main.ejs')
-})
+app.post("/auth/login", (req,res)=>{
+    res.render('main.ejs');
+});
 
+app.get("/auth/signup", (req,res)=>{
+    res.render('signup.ejs');
+});
 
+app.post("/auth/signup", (req,res)=>{
+    var sql = "INSERT INTO user (userId, pw, name) VALUE(?, SHA2(?,256), ?)";
+    var params = [req.body.userId, req.body.userPW, req.body.userName];
+    connection.query(sql , params, (err,rows,fields)=>{
+        if(err){
+            console.log('err');
+            res.status(500).send("회원가입에 실패하였습니다.");
+        }else{
+            res.redirect('/auth/login');
+        }
+    })
 
+});
+
+app.get('/topic/add', (req,res)=>{
+    var sql = "SELECT id, title FROM topic";
+    connection.query(sql, (err, rows, fields)=>{
+        if(err){
+            console.log(err);
+            res.status(500).send("Internal server error");
+        }else{
+            res.render('add.ejs', {topics:rows});
+        }
+        
+    })
+
+});
 
 app.get(['/topic', '/topic/:id'], (req,res)=>{
     
-    var sql = "SELECT id, title FROM topic;";
+    var sql = "SELECT id, title FROM topic;";   
     connection.query(sql, (err, topics, fields)=>{
         
         if(err) {
@@ -97,6 +126,23 @@ app.get(['/topic', '/topic/:id'], (req,res)=>{
         }
     });
 });
+
+
+
+app.post('/topic', (req,res)=>{
+    var sql = "INSERT INTO topic (title , description, author) VALUES(?, SHA2(?,256), ?)"
+    var params=[req.body.title, req.body.description, req.body.author];
+    connection.query(sql, params, (err, rows, fields)=>{
+        if(err) {
+            console.log(err);
+            res.status(500).send("Internal server error");
+        }else{
+            res.redirect('/topic/'+rows.insertId);
+        }
+
+    });
+})
+
 
 
 

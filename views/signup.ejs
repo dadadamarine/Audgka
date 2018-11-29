@@ -31,30 +31,22 @@
                     <!-- <img src="https://image.ibb.co/cO9Lxq/login-bg.jpg
                     " alt=""> -->
                 </div>
-                <form action="/login" method="post">
+                <form action="/auth/signup" method="post">
                     <div class="login-box__id">
                         <label>Email Or Username</label>
-                        <input type="text">
+                        <input type="text" name="userId">
                     </div>
                     <div class="login-box__password">
                         <label>Password</label>
-                        <input type="password">
+                        <input type="password" name="userPW">
                     </div>
-                    <button type="submit" class="login-button login-button--long-orange">Sign In</button>
+                    <div class="login-box__id">
+                        <label>name</label>
+                        <input type="text" name="userName">
+                    </div>
+                    <button type="submit" class="login-button login-button--long-orange">Sign Up</button>
                 </form>
                 <div class="sixty">
-                    <div class="links">
-                        <a href="#">Forgot Password</a>
-                        <a href="#">Sign in with company or school</a>
-                    </div>
-                    <div class="or">
-                        <hr class="bar">
-                        <span>OR</span>
-                        <hr class="bar">
-                    </div>
-                    <a href="./signup" class="login-button login-button--normal-black">Create an account</a>
-
-                
                     <div class="login-footer">
                         <p>Copyright &copy; 2018, audgka all Rights Reserved</p>
                         <div>
