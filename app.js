@@ -1,15 +1,21 @@
 //main file , entry file
 var express = require('express');
 var app = express(); // 익스프레스 모듈에서 함수를 가져오고, 그 함수를 실행하면 app을 반환
-var bodyParser = require('body-parser');
-var mysql = require("mysql");
-var js_sha2 = require("sha256");
-
+var bodyParser = require('body-parser'); // post 라우팅시 req.body를 사용하기 위한 모듈
+var mysql = require("mysql"); 
+var js_sha2 = require("sha256"); // 비밀번호 해싱을 위한 모듈
+var session = require("express-session");
 //정적인 파일의 위치 디렉토리를 지정
 //public폴더에 정적인 파일 가져다 두면, 사용자 에게 정적인 파일을 서비스 할 수 있음.    
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:false})); //이 app으로 들어오는 모든 요청은 이 미들웨어를 먼저 통과한 후에 라우터가 동작하게 됨
 //bodyParser: 가장 앞에서 동작, 사용자가 post로 보낸 요청이 있다면 , req객체가 원래 가지고 있지 않던 body를 추가함.
+app.use(session({
+    secret:"audgkaleremword",
+    resave: false,
+    saveUninitialized: true
+}))
+
 app.set('view engine', 'ejs'); // 뷰 엔진으로 ejs사용 //app.set('views', './views');
 app.set('views', './views'); // 노드가 템플릿 파일을 찾을때, views폴더 안에있는 경로로 템플릿 파일을 찾게됨 // 안적어도 됨.
 
@@ -20,8 +26,8 @@ var connection = mysql.createConnection({
     password : '123456',
     database : 'o2'
 });
-
 connection.connect();
+
 
 
 /*조회 :  var sql = "SELECT * FROM topic";
@@ -109,6 +115,17 @@ app.post("/auth/signup", (req,res)=>{
     })
 
 });
+
+app.get('/audgka/make', (req,res)=>{
+    if(req.session.count){
+        req.session.count++;
+    }else{
+        req.session.count=1;
+    }
+    
+    res.send("result = " + req.session.count); 
+});
+
 
 app.get('/topic/add', (req,res)=>{
     var sql = "SELECT id, title FROM topic";
