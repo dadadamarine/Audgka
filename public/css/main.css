@@ -81,6 +81,8 @@ a:visited, a:link , a:active{
 .section_inner{
     width:1000px;
     margin:0 auto;
+    border:1px solid transparent;
+    border-width: 1px 0 1px 0;
 }
 
 .left{
@@ -118,7 +120,7 @@ a:visited, a:link , a:active{
     font-weight: 100;
     margin: 8px 0 30px 0;
 }
-.description-box__button{
+.start-button{
     cursor: pointer;
     border-radius: 28px;
     text-transform: uppercase;
@@ -134,7 +136,68 @@ a:visited, a:link , a:active{
 .description-box__button:hover{
     color:black;
 }
-.aaa{
-    display: table-cell;
-    vertical-align: middle;
+.text-center{
+    text-align: center;
+}
+.description{
+    margin:20px 40px;
+    font-size:3rem;
+}
+.function-list_item{
+    width:33.333%;
+    float:left;
+}
+.function-list_item img{
+    width:30px;
+    height:30px;
+}
+.function-list_item h4{
+    font-size:1.1rem;
+} 
+.function-list_item p{
+    font-size:1rem;
+}
+
+.section--black{
+    background:black;
+}
+.editor-description{
+    color:white;
+}
+.editor-description_title{
+    font-size:5rem;
+}
+.editor-description_img-cover{
+    background:#333333;
+    width:1000px;
+    height:600px;
+    border-radius: 10px;
+    padding:20px;
+}
+.editor-description_img-cover img{
+    width:100%;
+}
+.editor-description_context{
+    margin:60px 100px;
+    font-size: 1.4rem;
+}
+.section--orange{
+    background:#E0AA02;
+}
+.description--white{
+    color:white;
+}
+.start-button--purple{
+    background-color:#AE02F6;
+}
+.footer{
+    width:100%;
+    background:black;
+}
+.footer_logo{
+    width:80px;
+}
+.footer_info{
+    color:white;
+    font-size:0.4rem;
 }
