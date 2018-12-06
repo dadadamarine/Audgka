@@ -73,11 +73,10 @@ body{
     border:0;
     outline: 0;
 }
-
-.aaa{
-    display: table-cell;
-    vertical-align: middle;
-}
 .description-box__button:hover{
     color:black;
+}
+.vertical-center{
+    display: table-cell;
+    vertical-align: middle;
 }

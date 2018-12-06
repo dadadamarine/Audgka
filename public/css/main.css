@@ -4,40 +4,69 @@ body{
     padding:0;
     font-family: 'Quicksand', sans-serif;
 }
+a:visited, a:link , a:active{
+    color: white;
+    text-decoration: none;
+}
 
 /* 메뉴 */
 
 .navigation-bar{
     position: sticky;
-    height:80px;
-    padding:3px 40px;
+    height:40px;
+    padding:0 40px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
-    background-color: white;
+    background-color: black;
+
 }
 .navigation-bar__logo{
-    height:40px;
-    margin-top:20px;
+    height:35px;
 }
 .navigation-bar__menu {
-    float:right;
-    width:60%;
-    height:100%;
-    position: relative;
-    
+    display: inline-block;
+    margin: 2.5px 20px;
+    line-height:1.5rem;
+    height:35px;
+    color:white;
+    font-size:0.6rem;
+    text-decoration: none;
 }
 .menu-list{
-    position: absolute;
+    height:35px;
+    margin:0;
+}
+.navigation-bar__menu--right{
+    float:right;
+}
+.menu-list_search-bar{
+    width:150px;
+    border-radius: 20px;
+    height:30px;
+    background-color:white;
+    vertical-align: center;
+    margin: 5px;
+}
+.menu-list_search-bar img{
+    width:15%;
+    border:1px solid red;
+}
+.menu-list_search-bar input{
+    width:80%;
+    height:80%;
+    border:none;
+}
+
+.menu-list{
+    float:left;
     right:0;
     padding: 0;
-    margin: 25px 0;
 
-    font-size:1.1rem;
 }
 
 .menu-list li{
     float:left;
     list-style: none;
-    margin:0 30px 0 0;
+    margin:0 10px 0 0;
 }
 
 
@@ -45,9 +74,67 @@ body{
 .section{
     width:100%;
 }
-.banner{
-    width:100%;
-    height:500px;
-    background:url(../img/main/banner.png) no-repeat center;
-    background-size:cover;
+.section--pink{
+    background-color:#f5bede;
+    height:700px;
+}
+.section_inner{
+    width:1000px;
+    margin:0 auto;
+}
+
+.left{
+    float:left;
+}
+.padding-top--200{
+    padding-top:200px;
+}
+
+.right{
+    float:right;
+}
+
+.description-box{
+    display: table;
+}
+
+.text--yellow{
+    color:#f4c613;
+    font-weight: 700;
+}
+
+.description-box__title h1{
+    color:white;
+    font-size:4.2rem;
+    font-weight:700;
+    text-transform: uppercase;
+    margin:0;
+
+}
+
+.description-box__text{
+    color:white;
+    font-size:1.1rem;
+    font-weight: 100;
+    margin: 8px 0 30px 0;
+}
+.description-box__button{
+    cursor: pointer;
+    border-radius: 28px;
+    text-transform: uppercase;
+    font-size:13px;
+    margin: 0 6px;
+    padding: 12px 46px;
+    transition: all 0.4s;
+    background-color:#f4c613;
+    color:white;
+    border:0;
+    outline: 0;
+}
+.description-box__button:hover{
+    color:black;
+}
+.aaa{
+    display: table-cell;
+    vertical-align: middle;
 }

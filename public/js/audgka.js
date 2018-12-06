@@ -761,7 +761,14 @@ $(document).ready(function(){
     ); 
       */
     
-    }); // documentReady END
+    document.getElementById("PGs-Wrap").addEventListener("click", (e)=>{
+      console.log(e);
+    })
+
     
+    
+    
+    
+    }); // documentReady END
     
     
