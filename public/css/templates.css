@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Quicksand', sans-serif;
+}
+.sorting-bar{
+    white-space: nowrap; /* 무조건 한줄로 */
+    height:40px;
+    background:white;
+    border-bottom: 2px solid #e5e5e5;
+}
+.sorting-menu{
+    list-style: none;
+    margin:auto;
+    width:400px;
+    height:100%;
+}
+.sorting-menu_item{
+    display: inline-block;
+    width:100px;
+    height:100%;
+    position: relative;
+}
+
+
+
+.sorting-list_active-item{
+    font-weight:bold;
+    font-size:1rem;
+    line-height: 2.5rem;
+}
+.sorting-list_active-item::after{
+    content:" ";
+    background-image:url("/img/templates/icon_down.png");
+    width:10px;
+    height:10px;
+    display: inline-block;
+    background-position: center;
+    background-size: contain;
+}
+.sorting-list{
+    
+    display: none;
+    position: absolute;
+    top:40px;
+    width:200px;
+    padding: 0 0 10px 0;
+    background:white;
+    list-style: none;
+    box-shadow: 1px 2px 1px  black;
+    font-size:0.8rem;
+}
+.sorting-list>li{
+    display: block;
+    height:20px;
+    padding:3px 15px;
+    line-height: 1.2rem;
+    font-size:0.9rem;
+}
+.sorting-list>li:hover{
+    background-color: gray;
+}
+
+.sorting-menu_item:hover>ul{
+    display: block;
+}
+.sorting-list:hover{
+    display: block;
+}
+
+.tho{
+    height:1000px;
+}

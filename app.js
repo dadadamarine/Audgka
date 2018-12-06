@@ -66,6 +66,9 @@ app.get("/main", (req,res)=>{ // 라우터
 app.get("/item",(req,res)=>{
     res.render('item.ejs');
 });
+app.get("/templates" , (req,res)=>{
+    res.render('templates.ejs');
+})
 
 
 app.get("/auth/login", (req,res)=>{ // 라우터 , 로그인 페이지
