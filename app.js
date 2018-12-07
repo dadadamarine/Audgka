@@ -26,6 +26,7 @@ var connection = mysql.createConnection({
     password : '123456',
     database : 'o2'
 });
+
 connection.connect();
 
 
@@ -201,14 +202,7 @@ app.get('/form', (req,res)=>{
     res.render('form.ejs');
 });
 
-app.get('/form_receiver', (req,res)=>{
-    //query string | ?id=2 | 에 따라 다른 값을 보여줌
-    //req.query.(input 태그의 name) 으로 쿼리값 사용가능
-    var text =req.query.text;
-    var textarea = req.query.textarea;
-    res.send(text+" , " + textarea);
-});
-
+ 
 app.post('/form_receiver', (req,res)=>{
     var text = req.body.text;
     //기본적으로는 undefined인 body를 사용하기 위해서는 미들웨어가 필요함
