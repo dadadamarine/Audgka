@@ -61,7 +61,9 @@ app.get("/",(req,res)=>{
 });
 
 app.get("/main", (req,res)=>{ // 라우터
-    res.render('main.ejs');
+    var userName =req.session.userName;
+    console.log(userName, " 접속합니다.");
+    res.render('main.ejs', {userName : userName});
 });
 
 app.get("/item",(req,res)=>{
@@ -80,7 +82,7 @@ app.post("/auth/login", (req,res)=>{ // 로그인 요청
     var sql = "SELECT pw, name FROM user WHERE userId = ?";
     var userId= req.body.userId;
     var userPW = req.body.userPW;
-    var userName = req.body.userName;
+    var userName;
     connection.query(sql, [userId], (err, rows, field)=>{
         if(err){
             console.log(err);
@@ -91,7 +93,9 @@ app.post("/auth/login", (req,res)=>{ // 로그인 요청
                 res.redirect('/auth/login');
             }else if(js_sha2(userPW) === rows[0].pw){
                 // 성공
-                console.log(new Date() ," 로그인 : " , userId );
+                var userName = rows[0].name;
+                console.log(new Date() ," 로그인 : " , userId , userName );
+                req.session.userName = userName;
                 res.redirect('/main');
             }else{
                 // 비밀번호 오류
@@ -100,6 +104,11 @@ app.post("/auth/login", (req,res)=>{ // 로그인 요청
             }
         }
     });
+});
+
+app.get("/auth/logout", (req,res)=>{
+    delete req.session.userName; //delete: 객체에서 특정 속성 제거 , js명령어
+    res.redirect('/main');
 });
 
 app.get("/auth/signup", (req,res)=>{
@@ -128,6 +137,7 @@ app.get('/audgka/make', (req,res)=>{
     }
     
     res.send("result = " + req.session.count); 
+    //res.render('audgka_maker.ejs' , {});
 });
 
 
