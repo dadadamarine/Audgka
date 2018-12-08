@@ -27,6 +27,13 @@ table{
     box-shadow:0 1px 1px 1px #dfdfdf;
 }
 
+.maker-section{
+    background:#f1f2f5;
+    width:100%;
+    height:calc(100% - 60px);
+    overflow: hidden;
+    position: relative;
+}
 
 /* 툴박스 css */
 
@@ -72,11 +79,20 @@ table{
 
 
 /* 텍스트 편집 박스 */
+.text-edit-box_cover{   
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    display: none;
 
+    background:rgba(0,0,0,0.2);
+    z-index: 100;
+}
 .text-edit-box{
     position: absolute;
     color:white;
-    display: none;;
 }
 
 .text-edit-box_toolbar{
