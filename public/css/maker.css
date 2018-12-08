@@ -34,6 +34,22 @@ table{
     overflow: hidden;
     position: relative;
 }
+/* hover */
+h1:hover,h2:hover,h3:hover,h4:hover,h5:hover,h6:hover,p:hover,span:hover{
+    border:1px solid blue;
+    cursor: default;
+}
+h1:hover::before,h2:hover::before,h3:hover::before,h4:hover::before,h5:hover::before,h6:hover::before,p:hover::before,span:hover::before{
+    content:"텍스트";
+    display: block;
+    position: absolute;
+    top:0;
+    left:0;
+    color:red;
+    background:blue;
+    font-size:10px;
+}
+
 
 /* 툴박스 css */
 
