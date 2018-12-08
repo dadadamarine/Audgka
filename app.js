@@ -135,9 +135,8 @@ app.get('/audgka/:id/make', (req,res)=>{
     }else{
         req.session.count=1;
     }
-    
     res.send("result = " + req.session.count);  */
-    res.render('maker.ejs' , {});
+    res.render('maker.ejs' , {userName : req.session.userName});
 });
 
 

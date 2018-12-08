@@ -26,7 +26,32 @@
 
 <!--    <div id="" class=""></div>    <section id="" class=""></section>  -->
     <div class="nav">
-        
+        <div class="nav_hamburger">
+            <img src="/img/make/icon_hamburger.png" alt="">
+        </div>
+        <ul class="nav_menu-list">
+            <li>
+                <img src="/img/make/icon_preview.png" alt="">
+                <a href="">미리보기</a>
+            </li>
+            <li>
+                <img src="/img/make/icon_share.png"  alt="">
+                <a href="">공유</a>
+            </li>
+            <li>
+                <img src="/img/make/icon_hamburger.png"  alt="">
+                <a href="">임시저장</a>
+            </li>
+        </ul>
+        <div class="nav_info">
+            <% if(!userName){ %>
+                <a href="/auth/signup">가입</a>
+                <a href="/auth/login">로그인</a>
+            <% }else{ %>
+                <a href="#"><%= userName %>님 환영합니다.</a> 
+            <% } %>
+            
+        </div>
     </div>
     <div id="makerSection" class="maker-section">
     <!-- 우측 편집박스 -->

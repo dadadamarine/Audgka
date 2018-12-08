@@ -20,13 +20,75 @@ blockquote:before,blockquote:after,q:before,q:after{
 table{
     border-collapse:collapse;border-spacing:0
 }
+
+/* nav */
+
 .nav{
+    position: fixed;
+    z-index: 100;
     height:60px;
     width:100%;
     background:white;
     box-shadow:0 1px 1px 1px #dfdfdf;
 }
 
+.nav_hamburger{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 30px;
+    height:30px;
+    padding:15px;
+    border-right:1px solid #f2f2f2;
+}
+.nav_hamburger>img{
+    width:30px;
+    cursor: pointer;
+}
+.nav_info{
+    position: absolute;
+    top:0;
+    right:0;
+    box-sizing: border-box;
+    padding:12px 50px 10px 20px;
+    height:60px;
+
+    border-left:1px solid #f2f2f2;
+}
+.nav_info>a{
+    display: inline;
+    font-size:14px;
+    color:#999999;
+    vertical-align: middle;
+}
+.nav_info>a:visited{
+    color:#999999;
+}
+
+.nav_menu-list{
+    position: absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    margin-top:23px;
+    white-space:nowrap;
+}
+.nav_menu-list>li{
+    float:left;
+    color:#333333;
+    font-weight: bold;
+    font-size:18px;
+    margin: 0 15px;
+}
+.nav_menu-list img{
+    width:16px;
+    height:16px;
+    margin-right:3px;
+}
+
+.nav_menu-list a:visited{
+    color:#333333;
+}
 .maker-section{
     background:#f1f2f5;
     width:100%;
@@ -49,6 +111,8 @@ h1:hover::before,h2:hover::before,h3:hover::before,h4:hover::before,h5:hover::be
     background:blue;
     font-size:10px;
 }
+
+
 
 
 /* 툴박스 css */
