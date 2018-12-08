@@ -129,15 +129,15 @@ app.post("/auth/signup", (req,res)=>{
 
 });
 
-app.get('/audgka/make', (req,res)=>{
-    if(req.session.count){
+app.get('/audgka/:id/make', (req,res)=>{
+    /* if(req.session.count){
         req.session.count++;
     }else{
         req.session.count=1;
     }
     
-    res.send("result = " + req.session.count); 
-    //res.render('audgka_maker.ejs' , {});
+    res.send("result = " + req.session.count);  */
+    res.render('maker.ejs' , {});
 });
 
 
