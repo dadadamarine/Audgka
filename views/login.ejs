@@ -1,78 +1,110 @@
-<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>명함 - 로그인</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+
 </head>
 <body>
     <!-- 메뉴 -->
     <nav class="navigation-bar">
-        <a href="#">
-            <img class="navigation-bar__logo" src="/img/main/logo_picaboo.png" alt="">
+        <a href="/main">
+            <img class="navigation-bar__logo" src="/img/main/logo.png" alt="">
         </a>
         <div class="navigation-bar__menu">
             <ul class="menu-list">
-                <a href="#"><li>명함소개</li></a>
-                <a href="#"><li>내 정보</li></a>
-                <a href="#"><li>커뮤니티</li></a>
-                <a href="#"><li>명함 제작</li></a>
-                <a href="/auth/login"><li>로그인</li></a>
+                <li><a class="selected" href="#">기능</a></li>
+                <li><a href="/item">둘러보기</a></li> 
+                <li><a href="/audgka/1">프리미엄</a></li>
+                <li><a href="/templates">템플릿</a></li>
+                <li><a href="#">고객지원</a></li>
+            </ul>
+        </div>
+        <div class="navigation-bar__menu navigation-bar__menu--right">
+            <ul class="menu-list">
+                <li><a href="/auth/signup">가입</a></li>
+                <li><a href="/auth/login">로그인</a></li>
+                <li>
+                    <div class="menu-list_search-bar">
+                        <img src="/img/main/icon_search.png" alt="">
+                        <input type="text" placeholder="Search" >
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
+    
+    <div class="section">
+        <div class="center-box">
 
-    <div class="section section--black">
-        <div class="left">
-            <div class="login-box">
-                <div class="login-box__logo">
-                    <img src="https://image.ibb.co/hW1YHq/login-logo.png" alt="Sluralpright">
-                    <!-- <img src="https://image.ibb.co/cO9Lxq/login-bg.jpg
-                    " alt=""> -->
+            <div class="left">
+                <div class="showcase">
                 </div>
-                <form action="/auth/login" method="post">
-                    <div class="login-box__id">
-                        <label>Email Or Username</label>
-                        <input name="userId" type="text">
+            </div>
+            
+            <div class="right">
+                <div class="login-box">
+                    <div class="login-box__logo">
+                        <img src="https://image.ibb.co/hW1YHq/login-logo.png" alt="Sluralpright">
+                        <!-- <img src="https://image.ibb.co/cO9Lxq/login-bg.jpg
+                        " alt=""> -->
                     </div>
-                    <div class="login-box__password">
-                        <label>Password</label>
-                        <input name="userPW" type="password">
-                    </div>
-                    <button type="submit" class="login-button login-button--long-orange">Sign In</button>
-                </form>
-                <div class="sixty">
-                    <div class="links">
-                        <a href="#">Forgot Password</a>
-                        <a href="#">Sign in with company or school</a>
-                    </div>
-                    <div class="or">
-                        <hr class="bar">
-                        <span>OR</span>
-                        <hr class="bar">
-                    </div>
-                    <a href="./signup" class="login-button login-button--normal-black">Create an account</a>
-
-                
-                    <div class="login-footer">
-                        <p>Copyright &copy; 2018, audgka all Rights Reserved</p>
-                        <div>
-                            <a href="#">terms of use</a> | <a href="#">Privacy Policy</a>
+                    <form action="/auth/login" method="post">
+                        <div class="login-box__id">
+                            <label>Email Or Username</label>
+                            <input name="userId" type="text">
+                        </div>
+                        <div class="login-box__password">
+                            <label>Password</label>
+                            <input name="userPW" type="password">
+                        </div>
+                        <button type="submit" class="login-button login-button--long-orange">Sign In</button>
+                    </form>
+                    <div class="sixty">
+                        <div class="links">
+                            <a href="#">Forgot Password</a>
+                            <a href="#">Sign in with company or school</a>
+                        </div>
+                        <div class="or">
+                            <hr class="bar">
+                            <span>OR</span>
+                            <hr class="bar">
+                        </div>
+                        <a href="./signup" class="login-button login-button--normal-black">Create an account</a>
+    
+                    
+                        <div class="login-footer">
+                            <p>Copyright &copy; 2018, audgka all Rights Reserved</p>
+                            <div>
+                                <a href="#">terms of use</a> | <a href="#">Privacy Policy</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="right">
-            <div class="showcase">
-                <div class="showcase-info">
-                    <h1 class="showcase-info__text">Let's create the future <strong>together</strong></h1>
-                    <a href="" class="login-button login-button--small-black">Start a FREE 10-day trial</a>
-                </div>
 
-            </div>
         </div>
     </div>
+        
+            
+            
+
+
+
+
+    <footer class="footer text-center">
+        <div class="footer_logo">
+            <img src="/img/main/logo_simple.png" alt="">
+            <div class="footer_blur"></div>
+        </div>
+        
+        <p class="footer_info">
+            상호(주) 아이엠 사업자등록번호 123-45-45823</br>
+            대표자명 김찬주 주소 전라남도 여수시 둔덕동 산96-1 전남대학교 이학관 2층 208호</br>
+            고객센터 010-3001-9196 (10:00~18:00)</br>
+            채팅문의 제휴문의 kcj9196@gmail.com</br>
+        </p>
+        
+    </footer>
 </body>
 </html>
