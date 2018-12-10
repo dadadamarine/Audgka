@@ -338,8 +338,9 @@ app.post('/form_receiver', (req,res)=>{
 
 
 app.get('/setting/mysql',(req,res)=>{
-    var sql = "CREATE TABLE posts ( id bigint(20) unsigned NOT NULL AUTO_INCREMENT, userId varchar(150) character set utf8 NOT NULL, userEmail varchar(150) NOT NULL, title varchar(150) character set utf8 NOT NULL , description TEXT character set utf8 NULL, type varchar(10) NOT NULL, created datetime, hit int(10) unsigned NOT NULL default '0', reviews int(10) unsigned NOT NULL default '0', PRIMARY KEY (id) )";
+    var sql = "CREATE TABLE posts ( id bigint(20) unsigned NOT NULL AUTO_INCREMENT, userId varchar(150) NOT NULL, userEmail varchar(150) NOT NULL,title varchar(150) NOT NULL , description TEXT NULL, type varchar(10) NOT NULL, created datetime, hit int(10) unsigned NOT NULL default '0', reviews int(10) unsigned NOT NULL default '0', PRIMARY KEY (id) )";
     /* 수정  : ALTER TABLE posts CHANGE usedId userId varchar(30) NOT NULL; */
+    // 한글 ALTER TABLE posts convert to charset utf8
     connection.query(sql,(err, rows, fields)=>{
         if(err) {
             console.log(err);

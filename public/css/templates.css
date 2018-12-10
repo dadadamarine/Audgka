@@ -65,7 +65,7 @@ body{
     padding: 0 0 10px 0;
     background:white;
     list-style: none;
-    box-shadow: 1px 2px 1px  black;
+    box-shadow: 1px 2px 2px 1px  rgba(0,0,0,0.4);
     font-size:0.8rem;
 }
 .sorting-list>li{
