@@ -66,11 +66,21 @@ app.get("/main", (req,res)=>{ // 라우터
     res.render('main.ejs', {userName : userName});
 });
 
-app.get("/item",(req,res)=>{
+/* app.get("/item",(req,res)=>{
     res.render('item.ejs');
-});
+}); */
 app.get("/templates" , (req,res)=>{
-    res.render('templates.ejs');
+    var userName =req.session.userName;
+    res.render('templates.ejs',{userName : userName});
+})
+
+app.get("/board" , (req,res)=>{
+    var userName =req.session.userName;
+    res.render('board.ejs',{userName : userName});
+})
+app.get("/board/new" , (req,res)=>{
+    var userName =req.session.userName;
+    res.render('boardWrite.ejs',{userName : userName});
 })
 
 
@@ -139,7 +149,7 @@ app.get('/audgka/:id/make', (req,res)=>{
     res.render('maker.ejs' , {userName : req.session.userName});
 });
 
-
+/* 
 app.get('/topic/add', (req,res)=>{
     var sql = "SELECT id, title FROM topic";
     connection.query(sql, (err, rows, fields)=>{
@@ -152,7 +162,7 @@ app.get('/topic/add', (req,res)=>{
         
     })
 
-});
+}); */
 
 app.get(['/topic', '/topic/:id'], (req,res)=>{
     

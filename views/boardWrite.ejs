@@ -1,0 +1,190 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/boardWrite.css">
+</head>
+<body>
+    <!-- 메뉴 -->
+    <nav class="navigation-bar">
+        <a href="/main">
+            <img class="navigation-bar__logo" src="/img/main/logo.png" alt="">
+        </a>
+        <div class="navigation-bar__menu">
+            <ul class="menu-list">
+                <li><a href="/main">기능</a></li>
+                <li><a href="/audgka/1/make">체험하기</a></li> 
+                <li><a href="/templates">템플릿</a></li>
+                <li><a href="#">프리미엄</a></li>
+                <li><a class="selected" href="/board">커뮤니티</a></li>
+            </ul>
+        </div>
+        <div class="navigation-bar__menu navigation-bar__menu--right">
+            <ul class="menu-list">
+                <% if(!userName){ %>
+                    <li><a href="/auth/signup">가입</a></li>
+                    <li><a href="/auth/login">로그인</a></li>
+                <% }else{ %>
+                    <li><a href="/auth/logout">로그아웃</a></li>
+                <% } %>
+                <li>
+                    <div class="menu-list_search-bar">
+                        <img src="/img/main/icon_search.png" alt="">
+                        <input type="text" placeholder="Search" >
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <div  class="wrap">
+
+        <div  class="wrapper">
+            <div  class="wrapper__section">
+                <div  class="flex">
+                    <div  class="title">
+                        <div>
+                            <h2>I AM</h2>
+                            <p  class="sub-title">공지사항</p>
+                        </div>
+                    </div>
+                    <div  class="right_cont">
+                        <div  class="title_area2">
+
+                            <div  class="table-title">
+                            글쓰기
+                            </div>
+                            
+                        </div>
+
+                        <div  class="write-form">
+                        <form name="regForm" id="regForm" action="/class_center/helper_insert" method="post">
+                        <table>
+                        <tbody>
+                            <tr>
+                                <td class="title">아이디</td>
+                                <td>아이디</td>
+                                <td  class="title">닉네임</td>
+                                <td>닉네임</td>
+                            </tr>
+                            <tr  class="mail">
+                                <td  class="title">이메일</td>
+                                <td colspan="3">
+                                    <input type="text" name="email1" value="dadadamarine" id="email1" title="이메일주소를 넣어주세요." size="15"  class="input" />
+                                    &nbsp;@&nbsp;
+                                    <input type="text" name="email2" value="naver.com" id="email2" title="이메일계정을 넣어주세요." size="18"  class="input" />
+                                    <select title="메일주소 선택하기" name="email3"  class="select" onchange="selEmail(this.value);" >
+                                        <option value="">직접입력</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="daum.net">daum.net</option>
+                                        <option value="nate.com">nate.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="hanmail.net">hanmail.net</option>
+                                        <option value="hotmail.com">hotmail.com</option>
+                                        <option value="yahoo.co.kr">yahoo.co.kr</option>
+                                        <option value="empal.com">empal.com</option>
+                                        <option value="korea.com">korea.com</option>
+                                        <option value="hanmir.com">hanmir.com</option>
+                                        <option value="dreamwiz.com">dreamwiz.com</option>
+                                        <option value="orgio.net">orgio.net</option>
+                                        <option value="korea.com">korea.com</option>
+                                        <option value="chol.com">chol.com</option>
+                                        <option value="hitel.net">hitel.net</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr  class="category">
+                                <td  class="title">분류</td>
+                                <td colspan="3">
+                                    <select name="categoryList" id="categoryList">
+                                        <option value="">게시 분류를 선택해 주세요.</option>
+                                        <option value="1">공지사항</option>
+                                        <option value="2">리뷰페이지</option>
+                                        <option value="3">문의사항</option>
+                                        <option value="4">묻고 답하기</option>
+                                        <option value="6">제안 게시판</option>
+                                        <option value="5">자유게시판</option>
+                                        <option value="7">기타</option>
+                                        </select>
+                                </td>
+                            </tr>
+                            <tr  class="subject">
+                                <td  class="title">제목</td>
+                                <td colspan="3">
+                                    <input type="text" name="title" id="title" title="제목을 넣어주세요."  maxlength="500"  class="input" />
+                                </td>
+                            </tr>
+                            <tr  class="write">
+                                <td  class="title">내용</td>
+                                <td colspan="3">
+                                    <div  class="wrap" >
+                                        <textarea id="content" name="content"></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr  class="attach">
+                                <td  class="title">첨부파일</td>
+                                <td colspan="3">
+                                    <input type="text" name="" id=""  class="input"  title="첨부파일" />&nbsp;
+                                    <img src="/img/board/search.jpg" />
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        </form>
+                        <div  class="btns">
+                            <a href=""><img src="/img/board/admit.jpg"/></a>
+                            <a href="/class_center/qna_list/"><img src="/img/board/cancle.jpg" /></a>
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="footer text-center">
+        <div class="footer_logo">
+            <img src="/img/main/logo_simple.png" alt="">
+            <div class="footer_blur"></div>
+        </div>
+        
+        <p class="footer_info">
+            상호(주) 아이엠 사업자등록번호 123-45-45823</br>
+            대표자명 김찬주 주소 전라남도 여수시 둔덕동 산96-1 전남대학교 이학관 2층 208호</br>
+            고객센터 010-3001-9196 (10:00~18:00)</br>
+            채팅문의 제휴문의 kcj9196@gmail.com</br>
+        </p>
+        
+    </footer>
+</body>
+</html>

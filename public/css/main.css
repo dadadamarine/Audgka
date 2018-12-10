@@ -43,10 +43,10 @@ a:visited, a:link , a:active{
     
 }
 .menu-list a:link,:visited{
-    color:#9f9f9f;
+    color:#9f9f9f !important;
 }
 .menu-list a.selected{
-    color:#ffffff;    
+    color:#ffffff !important;    
 }
 .menu-list li{
     float:left;

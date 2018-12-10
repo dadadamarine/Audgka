@@ -16,20 +16,24 @@
         </a>
         <div class="navigation-bar__menu">
             <ul class="menu-list">
-                <a href="#"><li>기능</li></a>
-                <a href="/item"><li>둘러보기</li></a>
-                <a href="/audgka/1"><li>프리미엄</li></a>
-                <a href="#"><li>템플릿</li></a>
-                <a href="#"><li>고객지원</li></a>
+                <li><a href="main">기능</a></li>
+                <li><a href="/audgka/1/make">체험하기</a></li> 
+                <li><a class="selected" href="/templates">템플릿</a></li>
+                <li><a href="#">프리미엄</a></li>
+                <li><a href="/board">커뮤니티</a></li>
             </ul>
         </div>
         <div class="navigation-bar__menu navigation-bar__menu--right">
             <ul class="menu-list">
-                <a href="#"><li>가입</li></a>
-                <a href="/login"><li>로그인</li></a>
+                <% if(!userName){ %>
+                    <li><a href="/auth/signup">가입</a></li>
+                    <li><a href="/auth/login">로그인</a></li>
+                <% }else{ %>
+                    <li><a href="/auth/logout">로그아웃</a></li>
+                <% }%>
                 <li>
                     <div class="menu-list_search-bar">
-                        <img src="./img/main/searchIcon.png" alt="">
+                        <img src="/img/main/icon_search.png" alt="">
                         <input type="text" placeholder="Search" >
                     </div>
                 </li>
