@@ -46,8 +46,8 @@
                 <div  class="flex">
                     <div  class="title">
                         <div>
-                            <h2>I AM</h2>
-                            <p  class="sub-title">공지사항</p>
+                            <h2></h2>
+                            <p  class="sub-title"></p>
                         </div>
                     </div>
                     <div  class="right_cont">
@@ -65,16 +65,16 @@
                         <tbody>
                             <tr>
                                 <td class="title">아이디</td>
-                                <td>아이디</td>
+                                <td><%= userId %></td>
                                 <td  class="title">닉네임</td>
-                                <td>닉네임</td>
+                                <td><%= userName %></td>
                             </tr>
                             <tr  class="mail">
                                 <td  class="title">이메일</td>
                                 <td colspan="3">
-                                    <input type="text" name="email1" value="dadadamarine" id="email1" title="이메일주소를 넣어주세요." size="15"  class="input" />
+                                    <input type="text" name="email1" value="email" id="email1" title="이메일주소를 넣어주세요." size="15"  class="input" />
                                     &nbsp;@&nbsp;
-                                    <input type="text" name="email2" value="naver.com" id="email2" title="이메일계정을 넣어주세요." size="18"  class="input" />
+                                    <input type="text" name="email2" value="email.com" id="email2" title="이메일계정을 넣어주세요." size="18"  class="input" />
                                     <select title="메일주소 선택하기" name="email3"  class="select" onchange="selEmail(this.value);" >
                                         <option value="">직접입력</option>
                                         <option value="naver.com">naver.com</option>
@@ -100,13 +100,11 @@
                                 <td colspan="3">
                                     <select name="categoryList" id="categoryList">
                                         <option value="">게시 분류를 선택해 주세요.</option>
+                                        <% if(userName === "admin"){ %>
                                         <option value="1">공지사항</option>
-                                        <option value="2">리뷰페이지</option>
-                                        <option value="3">문의사항</option>
+                                        <% } %>
                                         <option value="4">묻고 답하기</option>
-                                        <option value="6">제안 게시판</option>
-                                        <option value="5">자유게시판</option>
-                                        <option value="7">기타</option>
+                                       
                                         </select>
                                 </td>
                             </tr>
@@ -124,13 +122,13 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr  class="attach">
+<!--                             <tr  class="attach">
                                 <td  class="title">첨부파일</td>
                                 <td colspan="3">
                                     <input type="text" name="" id=""  class="input"  title="첨부파일" />&nbsp;
                                     <img src="/img/board/search.jpg" />
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                         </table>
                         </form>

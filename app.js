@@ -74,12 +74,24 @@ app.get("/templates" , (req,res)=>{
 })
 
 app.get("/board" , (req,res)=>{
+    res.redirect('/board/notice');
+})
+app.get("/board/notice" , (req,res)=>{
     var userName =req.session.userName;
-    res.render('board.ejs',{userName : userName});
+    res.render('boardNotice.ejs', {userName : userName});
+})
+app.get("/board/ask" , (req,res)=>{
+    var userName =req.session.userName;
+    res.render('boardAsk.ejs', {userName : userName});
 })
 app.get("/board/new" , (req,res)=>{
+    var userId= req.session.userId;
     var userName =req.session.userName;
-    res.render('boardWrite.ejs',{userName : userName});
+    if(userId && userName){
+        res.render('boardWrite.ejs',{ userId : userId ,userName : userName});
+    }else{
+        res.redirect('/auth/login');
+    }
 })
 
 
@@ -133,6 +145,7 @@ app.post("/auth/login", (req,res)=>{ // 로그인 요청
                 // 성공
                 var userName = rows[0].name;
                 console.log(new Date() ," 로그인 : " , userId , userName );
+                req.session.userId = userId;
                 req.session.userName = userName;
                 res.redirect('/main');
             }else{
@@ -146,11 +159,17 @@ app.post("/auth/login", (req,res)=>{ // 로그인 요청
 
 app.get("/auth/logout", (req,res)=>{
     delete req.session.userName; //delete: 객체에서 특정 속성 제거 , js명령어
+    delete req.session.userId;
     res.redirect('/main');
 });
 
 app.get("/auth/signup", (req,res)=>{
+    res.render('signupAgree.ejs');
+});
+
+app.get("/auth/signup/info", (req,res)=>{
     res.render('signup.ejs');
+    
 });
 
 app.post("/auth/signup", (req,res)=>{
@@ -259,7 +278,18 @@ app.post('/form_receiver', (req,res)=>{
 });
 
 
+app.get('setting/mysql',(req,res)=>{
+    var sql = "CREATE TABLE posts ( id bigint(20) unsigned NOT NULL AUTO_INCREMENT, subject varchar(255) NOT NULL, content mediumtext, created datetime, user_id int(10) unsigned NOT NULL, user_name varchar(32) NOT NULL, hit int(10) unsigned NOT NULL default '0',   PRIMARY KEY (id) )";
+    connection.query(sql,(err, rows, fields)=>{
+        if(err) {
+            console.log(err);
+            res.status(500).send("테이블 생성 오류");
+        }else{
+            res.redirect('/topic/'+rows.insertId);
+        }
 
+    });
+})
 
 
 

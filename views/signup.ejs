@@ -59,17 +59,18 @@
                     </div>
                     <form action="/auth/signup" method="post">
                         <div class="login-box__id">
-                            <input name="userId" type="text" placeholder="user@email.com">
+                            <label>Email Or Username</label>
+                            <input name="userId" type="text">
                         </div>
                         <div class="login-box__password">
-                            <input name="userPW" type="password" placeholder="Password">
+                            <label>Password</label>
+                            <input name="userPW" type="password">
                         </div>
-                        <div class="login-box__id">
-                            <input name="userName" type="password" placeholder="닉네임">
+                        <div class="login-box__password">
+                            <label>Name</label>
+                            <input name="userName" type="password">
                         </div>
                         <button type="submit" class="login-button login-button--long-orange">Sign Up</button>
-                        <div class="size">
-                        </div>
                     </form>
                 </div>
             </div>

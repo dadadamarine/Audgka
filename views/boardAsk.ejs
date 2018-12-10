@@ -46,13 +46,13 @@
                     <div class="title">
                         <div>
                             <h2>I AM</h2>
-                            <p class="sub-title">공지사항</p>
+                            <p class="sub-title">묻고답하기</p>
                         </div>
                     </div>
                     <div>
                         <div class="community-banner flex--right">
-                            <a href=""><div class="community-banner__item"> 묻고 답하기 </div></a>
-                            <a href=""><div class="community-banner__item community-banner__item--selected"> 공지사항 </div></a>
+                            <a href="/board/ask"><div class="community-banner__item community-banner__item--selected"> 묻고 답하기 </div></a>
+                            <a href="/board/notice"><div class="community-banner__item"> 공지사항 </div></a>
                         </div>
 
                         <ul class="community-list">
@@ -74,9 +74,8 @@
                                 <p>2018-11-01</p>
                             </li>
                         </ul> 
-                        <% if(userName === "admin"){ %>
-                            <a href="./board/new"><div class="button--write">글쓰기</div></a>
-                        <% }else{} %>
+                        <a href="/board/new"><div class="button--write">글쓰기</div></a>
+                        
                         
                         <div class="flex--center height--eight">
                             <div class="page-selector">
