@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/board.css">
+    <link rel="stylesheet" type="text/css" href="/css/admin.css">
 </head>
 <body>
     <!-- 메뉴 -->
@@ -21,12 +21,7 @@
         </div>
         <div class="navigation-bar__menu navigation-bar__menu--right">
             <ul class="menu-list">
-                <% if(!userName){ %>
-                    <li><a href="/auth/signup">가입</a></li>
-                    <li><a href="/auth/login">로그인</a></li>
-                <% }else{ %>
-                    <li><a href="/auth/logout">로그아웃</a></li>
-                <% }%>
+                    <li><a href="#">관리자 페이지</a></li>
                 <li>
                     <div class="menu-list_search-bar">
                         <img src="/img/main/icon_search.png" alt="">
@@ -45,38 +40,38 @@
                 <div class="flex">
                     <div class="title">
                         <div>
-                            <h2>I AM</h2>
-                            <p class="sub-title">공지사항</p>
+                            <h2>I AM 관리자</h2>
+                            <p class="sub-title">회원관리</p>
                         </div>
                     </div>
                     <div>
-                        <div class="community-banner flex--right">
+                        <div class="community-banner flex">
+                            <a href=""><div class="community-banner__item"> 자유게시판 </div></a>
+                            <a href=""><div class="community-banner__item"> 제안 및 건의 </div></a>
+                            <a href=""><div class="community-banner__item"> 컨텐츠 리뷰 </div></a>
                             <a href=""><div class="community-banner__item"> 묻고 답하기 </div></a>
-                            <a href=""><div class="community-banner__item community-banner__item--selected"> 공지사항 </div></a>
+                            <a href=""><div class="community-banner__item community-banner__item--selected"> 회원관리 </div></a>
                         </div>
 
                         <ul class="community-list">
                             <li class="community-list__head">
-                                <p>내용</p>
-                                <p>등록일</p>
+                                <p>ID</p>
+                                <p>닉네임</p>
+                                <p>회원관리</p>
                             </li>
-                            
+                            <% for(var i =0; i<rows.length; i++ ) {%>
                             <li class="community-list__item">
-                                <a href="">개인정보 처리방침 계정안내</a>
-                                <p>2018-11-07</p>
+                                <p><%= rows[i].userId %></p>
+                                <p><%= rows[i].name %></p>
+                                <form action="auth/delete" method="POST" class="delete-form">
+                                    <input type="hidden" name="userId" value="<%= rows[i].userId %>" >
+                                    <input type="submit" value="삭제">
+                                </form>
                             </li>
-                            <li class="community-list__item">
-                                <a href="">개인정보 이전 안내</a>
-                                <p>2018-11-01</p>
-                            </li>
-                            <li class="community-list__item">
-                                <a href=""> [안내]계정을 안전하게 지키는 TIP! </a>
-                                <p>2018-11-01</p>
-                            </li>
+                            <% } %>
+
                         </ul> 
-                        <% if(userName === "admin"){ %>
-                            <a href="./board/new"><div class="button--write">글쓰기</div></a>
-                        <% }else{} %>
+
                         
                         <div class="flex--center height--eight">
                             <div class="page-selector">

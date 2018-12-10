@@ -54,10 +54,9 @@ var params=[1]; */
 
 
 
-
-
 app.get("/",(req,res)=>{
-    res.render('intro.ejs');
+   // res.render('intro.ejs');
+   res.redirect("/main");
 });
 
 app.get("/main", (req,res)=>{ // 라우터
@@ -83,6 +82,35 @@ app.get("/board/new" , (req,res)=>{
     res.render('boardWrite.ejs',{userName : userName});
 })
 
+
+
+app.get("/admin" , (req,res)=>{
+    var sql = "SELECT userId , name FROM user";
+    connection.query(sql, (err, rows, field)=>{
+        if(err){
+            console.log(err);
+            res.status(500).send("Internal server error");
+        }else{
+            console.log(rows[0].userId);
+            res.render('admin.ejs' ,{rows: rows});
+            
+        }
+    });
+})
+
+app.post("/auth/delete" , (req,res)=>{
+    var sql = "DELETE FROM user WHERE userId = ?";
+    console.log(req.body.userId);
+    var params = [req.body.userId]
+    connection.query(sql, params, (err, rows, field)=>{
+        if(err){
+            console.log(err);
+            res.status(500).send("Internal server error");
+        }else{
+            res.redirect('/admin');
+        }
+    });
+})
 
 app.get("/auth/login", (req,res)=>{ // 라우터 , 로그인 페이지
     res.render('login.ejs');

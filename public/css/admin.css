@@ -22,7 +22,7 @@
 }
 h2{
     font-size:1.8rem;
-    font-weight: bolder;
+    font-weight: bold;
 }
 
 .wrapper__section{
@@ -37,12 +37,6 @@ h2{
     width:100%;
     display: flex;
 }
-.flex--right{
-    width:100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
 .flex--center{
     display: flex;
     justify-content: center;
@@ -52,12 +46,6 @@ h2{
     width:250px;
     height:100%;
     margin-top:220px;
-}
-.title h2{
-    margin: 20px 0 10px;
-}
-.title p{
-    margin: 5px 0;
 }
 
 .sub-title{
@@ -88,7 +76,6 @@ h2{
 }
 .community-banner__item--selected{
     background:#1e1e1e;
-    border:1.5px solid #1e1e1e;
     color:white;
 }
 /* 40px, 1px #e5e5e5 */
@@ -117,9 +104,16 @@ h2{
 
 }
 .community-list li :first-child{
-    width:620px;
+    width:290px;
     height:100%;
     font-weight: bold;
+    padding-left: 16px;
+}
+.community-list li :nth-child(2){
+    width:290px;
+    height:100%;
+    font-weight: bold;
+    text-align: center;
     padding-left: 16px;
 }
 
@@ -144,6 +138,22 @@ li.community-list__item{
 li.community-list__item>a{
     color:rgb(82,82,82) !important;
 }
+.delete-form{
+    height:100%;
+}
+.delete-form>input{
+    background:transparent;
+    border:none;
+    cursor: pointer;
+    text-align: center;
+    height:100%;
+    padding-bottom: 23px;
+    padding-right:10px;
+}
+.delete-form>input:hover{
+    color:red;
+}
+
 .page-selector{
     margin-top:10px;
     display: flex;
