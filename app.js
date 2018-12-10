@@ -357,3 +357,5 @@ app.get('/setting/mysql',(req,res)=>{
 app.listen(3000, ()=>{
     console.log("Connected 3000 port");
 }); // 3000포트 실행, 실행 완료시 콜백함수를 실행함.
+
+//7시 46분
