@@ -64,7 +64,9 @@ app.get("/main", (req,res)=>{ // 라우터
     console.log(userName, " 접속합니다.");
     res.render('main.ejs', {userName : userName});
 });
-
+app.get("/help" , (req,res)=>{
+    res.redirect('/board/notice');
+})
 /* app.get("/item",(req,res)=>{
     res.render('item.ejs');
 }); */
@@ -97,17 +99,23 @@ app.get("/board/new" , (req,res)=>{
 
 
 app.get("/admin" , (req,res)=>{
-    var sql = "SELECT userId , name FROM user";
-    connection.query(sql, (err, rows, field)=>{
-        if(err){
-            console.log(err);
-            res.status(500).send("Internal server error");
-        }else{
-            console.log(rows[0].userId);
-            res.render('admin.ejs' ,{rows: rows});
-            
-        }
-    });
+    var userId = req.session.userId;
+    if(userId === "admin"){
+        var sql = "SELECT userId , name FROM user";
+        connection.query(sql, (err, rows, field)=>{
+            if(err){
+                console.log(err);
+                res.status(500).send("Internal server error");
+            }else{
+                console.log(rows[0].userId);
+                res.render('admin.ejs' ,{rows: rows});
+                
+            }
+        });
+    }else{
+        res.redirect("/main");
+    }
+
 })
 
 app.post("/auth/delete" , (req,res)=>{
@@ -259,11 +267,11 @@ app.get("/audgka/:id", (req, res)=>{
 });
 
 
-
+/* 
 app.get("/admit", (req, res)=>{
     res.send('hi admit, <img src="/admit.jpg"></img>');
 });
-
+ */
 app.get('/form', (req,res)=>{
     res.render('form.ejs');
 });
