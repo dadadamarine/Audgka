@@ -150,6 +150,7 @@ app.post("/board/new" , (req,res)=>{
 
 app.get("/admin" , (req,res)=>{
     var userId = req.session.userId;
+    var userName = req.session.userName;
     if(userId === "admin"){
         var sql = "SELECT userId , name FROM user";
         connection.query(sql, (err, rows, field)=>{
@@ -158,7 +159,7 @@ app.get("/admin" , (req,res)=>{
                 res.status(500).send("Internal server error");
             }else{
                 console.log(rows[0].userId);
-                res.render('admin.ejs' ,{rows: rows});
+                res.render('admin.ejs' ,{userName:userName,  rows: rows});
                 
             }
         });
