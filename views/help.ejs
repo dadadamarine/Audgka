@@ -1,0 +1,62 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body>
+    <!-- 메뉴 -->
+    <nav class="navigation-bar">
+        <a href="/main">
+            <img class="navigation-bar__logo" src="/img/main/logo.png" alt="">
+        </a>
+        <div class="navigation-bar__menu">
+            <ul class="menu-list">
+                <li><a class="selected" href="/main">소개</a></li>
+                <li><a href="/templates">템플릿</a></li>
+                <li><a href="/help">학습 및 지원</a></li>
+                <li><a href="/board">커뮤니티</a></li>
+                <% if(userName==="admin"){ %>
+                    <li><a href="/admin">관리페이지</a></li>
+                <% }%>
+            </ul>
+        </div>
+        <div class="navigation-bar__menu navigation-bar__menu--right">
+            <ul class="menu-list">
+                <% if(!userName){ %>
+                    <li><a href="/auth/signup">가입</a></li>
+                    <li><a href="/auth/login">로그인</a></li>
+                <% }else{ %>
+                    <li><a href="/auth/logout">로그아웃</a></li>
+                <% }%>
+                <li>
+                    <div class="menu-list_search-bar">
+                        <img src="/img/main/icon_search.png" alt="">
+                        <input type="text" placeholder="Search" >
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="section">
+        <div class="section_inner back-img">
+           <img src="/img/main/help_img.jpg" alt="">
+           <a class="over-link" href="">소개 페이지 바로가기</a>
+        </div>
+    </div>
+    <footer class="footer text-center">
+        <div class="footer_logo">
+            <img src="/img/main/logo_simple.png" alt="">
+            <div class="footer_blur"></div>
+        </div>
+        
+        <p class="footer_info">
+            상호(주) 아이엠 사업자등록번호 123-45-45823</br>
+            대표자명 김찬주 주소 전라남도 여수시 둔덕동 산96-1 전남대학교 이학관 2층 208호</br>
+            고객센터 010-3001-9196 (10:00~18:00)</br>
+            채팅문의 제휴문의 kcj9196@gmail.com</br>
+        </p>
+        
+    </footer>
+</body>
+</html>

@@ -58,21 +58,22 @@
                         <ul class="community-list">
                             <li class="community-list__head">
                                 <p>내용</p>
-                                <p>등록일</p>
+                                <p>작성자</p>
                             </li>
                             
+                            <% for(var i=0; i<rows.length; i++){
+                                let l= rows[i].userId.indexOf("@");
+                                if(l != -1){
+                                    let userId = rows[i].userId.substr(0, l);
+                                }else{
+                                    userId = rows[i].userId;
+                                }
+                                %>
                             <li class="community-list__item">
-                                <a href="">개인정보 처리방침 계정안내</a>
-                                <p>2018-11-07</p>
+                                <a href=""><%= rows[i].title %></a>
+                                <p><%= userId %></p>
                             </li>
-                            <li class="community-list__item">
-                                <a href="">개인정보 이전 안내</a>
-                                <p>2018-11-01</p>
-                            </li>
-                            <li class="community-list__item">
-                                <a href=""> [안내]계정을 안전하게 지키는 TIP! </a>
-                                <p>2018-11-01</p>
-                            </li>
+                            <% } %>
                         </ul> 
                         <% if(userName === "admin"){ %>
                             <a href="/board/new"><div class="button--write">글쓰기</div></a>

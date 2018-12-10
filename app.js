@@ -65,7 +65,9 @@ app.get("/main", (req,res)=>{ // 라우터
     res.render('main.ejs', {userName : userName});
 });
 app.get("/help" , (req,res)=>{
-    res.redirect('/board/notice');
+    var userName =req.session.userName;
+
+    res.render('help.ejs' ,{userName : userName});
 })
 /* app.get("/item",(req,res)=>{
     res.render('item.ejs');
@@ -79,12 +81,29 @@ app.get("/board" , (req,res)=>{
     res.redirect('/board/notice');
 })
 app.get("/board/notice" , (req,res)=>{
-    var userName =req.session.userName;
-    res.render('boardNotice.ejs', {userName : userName});
+    var sql = 'SELECT userId, title FROM posts WHERE type = 1';
+    connection.query(sql, (err, rows, fields)=>{
+        if(err) {
+            console.log(err);
+            res.status(500).send("Internal server error");
+        }else{
+            var userName =req.session.userName;
+            res.render('boardNotice.ejs', {userName : userName , rows:rows});
+        }
+    })
 })
 app.get("/board/ask" , (req,res)=>{
-    var userName =req.session.userName;
-    res.render('boardAsk.ejs', {userName : userName});
+    var sql = 'SELECT userId, title FROM posts WHERE type = 2';
+    connection.query(sql, (err, rows, fields)=>{
+        if(err) {
+            console.log(err);
+            res.status(500).send("Internal server error");
+        }else{
+            var userName =req.session.userName;
+            res.render('boardAsk.ejs', {userName : userName , rows:rows});
+        }
+    })
+
 })
 app.get("/board/new" , (req,res)=>{
     var userId= req.session.userId;
@@ -95,6 +114,37 @@ app.get("/board/new" , (req,res)=>{
         res.redirect('/auth/login');
     }
 })
+app.post("/board/new" , (req,res)=>{
+    console.log(req.body);
+    var userId= req.body.userId;
+    var userName =req.body.userName;
+    if(req.body.email2){
+        var email = req.body.email1 + "@" + req.body.email2;
+    }else{
+        var email = req.body.email1 + "@" +req.body.email3;
+    }
+    var type = req.body.categoryList;
+    var title = req.body.title;
+    var content = req.body.content;
+    console.log(userId);
+    console.log(type);
+    console.log(content);
+    var sql = "INSERT INTO posts (userId, userEmail, title,  description, type) VALUES(?, ?, ?, ?, ?)"
+    var params=[userId, email, title, content, type];
+    connection.query(sql, params, (err, rows, fields)=>{
+        if(err) {
+            console.log(err);
+            res.status(500).send("Internal server error");
+        }else{
+            if( type === 1 ){
+                res.redirect('/board/notice');
+            }else{
+                res.redirect('/board/ask');
+            }
+        }
+
+    });
+});
 
 
 
@@ -286,14 +336,15 @@ app.post('/form_receiver', (req,res)=>{
 });
 
 
-app.get('setting/mysql',(req,res)=>{
-    var sql = "CREATE TABLE posts ( id bigint(20) unsigned NOT NULL AUTO_INCREMENT, subject varchar(255) NOT NULL, content mediumtext, created datetime, user_id int(10) unsigned NOT NULL, user_name varchar(32) NOT NULL, hit int(10) unsigned NOT NULL default '0',   PRIMARY KEY (id) )";
+app.get('/setting/mysql',(req,res)=>{
+    var sql = "CREATE TABLE posts ( id bigint(20) unsigned NOT NULL AUTO_INCREMENT, userId varchar(150) NOT NULL, userEmail varchar(150) NOT NULL,title varchar(150) NOT NULL , description TEXT NULL, type varchar(10) NOT NULL, created datetime, hit int(10) unsigned NOT NULL default '0', reviews int(10) unsigned NOT NULL default '0', PRIMARY KEY (id) )";
+    /* 수정  : ALTER TABLE posts CHANGE usedId userId varchar(30) NOT NULL; */
     connection.query(sql,(err, rows, fields)=>{
         if(err) {
             console.log(err);
             res.status(500).send("테이블 생성 오류");
         }else{
-            res.redirect('/topic/'+rows.insertId);
+            res.send(rows);
         }
 
     });

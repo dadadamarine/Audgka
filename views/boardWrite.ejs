@@ -60,21 +60,23 @@
                         </div>
 
                         <div  class="write-form">
-                        <form name="regForm" id="regForm" action="/class_center/helper_insert" method="post">
+                        <form name="regForm" id="regForm" action="/board/new" method="post">
                         <table>
                         <tbody>
                             <tr>
                                 <td class="title">아이디</td>
                                 <td><%= userId %></td>
+                                <input type="hidden" name="userId" value="<%= userId %>"/>
                                 <td  class="title">닉네임</td>
                                 <td><%= userName %></td>
+                                <input type="hidden" name="userName" value="<%= userName %>"/>
                             </tr>
                             <tr  class="mail">
                                 <td  class="title">이메일</td>
                                 <td colspan="3">
-                                    <input type="text" name="email1" value="email" id="email1" title="이메일주소를 넣어주세요." size="15"  class="input" />
+                                    <input type="text" name="email1" id="email1" title="이메일주소를 넣어주세요." size="15"  class="input" />
                                     &nbsp;@&nbsp;
-                                    <input type="text" name="email2" value="email.com" id="email2" title="이메일계정을 넣어주세요." size="18"  class="input" />
+                                    <input type="text" name="email2" id="email2" title="이메일계정을 넣어주세요." size="18"  class="input" />
                                     <select title="메일주소 선택하기" name="email3"  class="select" onchange="selEmail(this.value);" >
                                         <option value="">직접입력</option>
                                         <option value="naver.com">naver.com</option>
@@ -103,7 +105,7 @@
                                         <% if(userName === "admin"){ %>
                                         <option value="1">공지사항</option>
                                         <% } %>
-                                        <option value="4">묻고 답하기</option>
+                                        <option value="2">묻고 답하기</option>
                                        
                                         </select>
                                 </td>
@@ -133,7 +135,7 @@
                         </table>
                         </form>
                         <div  class="btns">
-                            <a href=""><img src="/img/board/admit.jpg"/></a>
+                            <a onclick="submit();"><img src="/img/board/admit.jpg"/></a>
                             <a href="/class_center/qna_list/"><img src="/img/board/cancle.jpg" /></a>
                         </div>
                         </div>
@@ -143,32 +145,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <footer class="footer text-center">
         <div class="footer_logo">
@@ -184,5 +160,20 @@
         </p>
         
     </footer>
+    <script>
+        function submit(){
+            var category = document.regForm.categoryList.value;
+            var title = document.regForm.title.value;
+            if(!category){
+                document.regForm.categoryList.focus();
+                alert("글의 분류를 지정해주세요");
+            }else if(!title){
+                document.regForm.categoryList.focus();
+                alert("글의 제목을 입력해 주세요.");
+            }else{
+                document.regForm.submit();
+            }
+        }
+    </script>
 </body>
 </html>

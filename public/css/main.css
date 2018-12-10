@@ -277,3 +277,21 @@ a:visited, a:link , a:active{
     font-size:0.4rem;
     line-height: 0.9rem;
 }
+.back-img{
+    position: relative;
+}
+.back-img>img{
+    width:1000px;
+
+}
+.back-img>.over-link{
+    position: absolute;
+    z-index: 1;
+    left:65px;
+    top:913px;
+    font-size:20pt;
+    color: #78b8f3 !important; 
+}
+.back-img>a:visited{
+  color: #78b8f3 !important;  
+}
