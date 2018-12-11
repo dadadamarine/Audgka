@@ -65,7 +65,7 @@
                             <% for(var i=0; i<rows.length; i++){
                                 let l= rows[i].userId.indexOf("@");
                                 if(l != -1){
-                                    let userId = rows[i].userId.substr(0, l);
+                                    var userId = rows[i].userId.substr(0, l);
                                 }else{
                                     userId = rows[i].userId;
                                 }

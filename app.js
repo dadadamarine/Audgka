@@ -60,10 +60,12 @@ app.get("/",(req,res)=>{
 });
 
 app.get("/main", (req,res)=>{ // 라우터
+    var countB = Math.floor(Math.random() * 5 + 1);
     var userName =req.session.userName;
     console.log(userName, " 접속합니다.");
-    res.render('main.ejs', {userName : userName});
+    res.render('main.ejs', {userName : userName, countB:countB});
 });
+
 app.get("/help" , (req,res)=>{
     var userName =req.session.userName;
 
@@ -168,6 +170,61 @@ app.get("/admin" , (req,res)=>{
     }
 
 })
+
+app.get("/admin/ask" , (req,res)=>{
+    var userId = req.session.userId;
+    var userName = req.session.userName;
+    if(userId === "admin"){
+        var sql = 'SELECT userId, title FROM posts WHERE type = 2';
+        connection.query(sql, (err, rows, field)=>{
+            if(err){
+                console.log(err);
+                res.status(500).send("Internal server error");
+            }else{
+                console.log(rows[0].userId);
+                res.render('adminAsk.ejs' ,{userName:userName,  rows: rows});
+                
+            }
+        });
+    }else{
+        res.redirect("/main");
+    }
+
+})
+
+app.get("/admin/notice" , (req,res)=>{
+    var userId = req.session.userId;
+    var userName = req.session.userName;
+    if(userId === "admin"){
+        var sql = "SELECT userId , name FROM user";
+        connection.query(sql, (err, rows, field)=>{
+            if(err){
+                console.log(err);
+                res.status(500).send("Internal server error");
+            }else{
+                console.log(rows[0].userId);
+                res.render('adminNotice.ejs' ,{userName:userName,  rows: rows});
+            }
+        });
+    }else{
+        res.redirect("/main");
+    }
+
+})
+
+app.post("/ask/delete" , (req,res)=>{
+    var sql = "DELETE FROM posts WHERE userId = ?, title = ?";
+    var params = [req.body.userId, req.body.title]
+    connection.query(sql, params, (err, rows, field)=>{
+        if(err){
+            console.log(err);
+            res.status(500).send("Internal server error");
+        }else{
+            res.redirect('/admin/ask');
+        }
+    });
+})
+
 
 app.post("/auth/delete" , (req,res)=>{
     var sql = "DELETE FROM user WHERE userId = ?";

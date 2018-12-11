@@ -96,8 +96,30 @@ a:visited, a:link , a:active{
     background-color:#f5bede;
     height:700px;
 }
-.section--blue{
+.section--2 .description-box__title h1 {
+    color:#333 !important;
+}
+.section--2 .description-box__text p{
+    color:#555;
+}
+.section--5{
     background-color:#07366E;
+    height:700px;
+}
+.section--4{
+    background-color:#73a3f7;
+    height:700px;
+}
+.section--3{
+    background-color:#f5bede;
+    height:700px;
+}
+.section--2{
+    background-color:#F0F0f0;
+    height:700px;
+}
+.section--1{
+    background-color:#7bd3ff;
     height:700px;
 }
 .section--second{

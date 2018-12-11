@@ -39,7 +39,7 @@
     </nav>
 
     <!-- 배너 -->
-    <div id="banner" class="section section--first section--blue">
+    <div id="banner" class="section section--first section--<%= countB %>">
         <div class="section_inner section_inner--relative">
 
             <div class="left">
@@ -57,7 +57,13 @@
                 </div>
             </div>
             <div class="right">
-                <img src="/img/main/banner/banner5.png" alt="">
+                <% if(countB<4){ %>
+                <img src="/img/main/banner/banner<%= countB %>.gif" alt="">
+                <% }else if(countB === 4){%>
+                    <img src="/img/main/banner/banner<%= countB %>.jpg" alt="">
+                <% }else if(countB ===5){ %>
+                    <img src="/img/main/banner/banner<%= countB %>.png" alt="">
+                <% } %>
             </div>
             
         </div>

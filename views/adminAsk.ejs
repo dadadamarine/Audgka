@@ -51,15 +51,15 @@
                     <div class="title">
                         <div>
                             <h2>I AM 관리자</h2>
-                            <p class="sub-title">회원관리</p>
+                            <p class="sub-title">묻고답하기</p>
                         </div>
                     </div>
                     <div>
                         <div class="community-banner flex--right">
                          
                             <a href="/admin/notice"><div class="community-banner__item"> 공지사항 </div></a>
-                            <a href="/admin/ask"><div class="community-banner__item"> 묻고 답하기 </div></a>
-                            <a href="/admin"><div class="community-banner__item community-banner__item--selected"> 회원관리 </div></a>
+                            <a href="/admin/ask"><div class="community-banner__item community-banner__item--selected"> 묻고 답하기 </div></a>
+                            <a href="/admin"><div class="community-banner__item"> 회원관리 </div></a>
                         </div>
 
                         <ul class="community-list">
@@ -68,16 +68,25 @@
                                 <p>닉네임</p>
                                 <p>회원관리</p>
                             </li>
-                            <% for(var i =0; i<rows.length; i++ ) {%>
+                            <% for(var i=0; i<rows.length; i++){
+                                let l= rows[i].userId.indexOf("@");
+                                if(l != -1){
+                                    var userId = rows[i].userId.substr(0, l);
+                                }else{
+                                    userId = rows[i].userId;
+                                }
+                                %>
                             <li class="community-list__item">
-                                <p><%= rows[i].userId %></p>
-                                <p><%= rows[i].name %></p>
-                                <form action="auth/delete" method="POST" class="delete-form">
+                                <p><%= rows[i].title %></p>
+                                <p><%= userId %></p>
+                                <form action="/ask/delete" method="POST" class="delete-form">
+                                    <input type="hidden" name="title" value="<%= rows[i].title %>" >
                                     <input type="hidden" name="userId" value="<%= rows[i].userId %>" >
                                     <input type="submit" value="삭제">
                                 </form>
                             </li>
                             <% } %>
+                           
 
                         </ul> 
 
