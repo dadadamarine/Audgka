@@ -56,7 +56,11 @@
                         <div  class="title_area2">
 
                             <div  class="table-title">
-                            글쓰기
+                                <% if(type==1){ %>
+                                공지사항
+                                <% }else if(type == 2){%>
+                                묻고 답하기
+                                <% } %>
                             </div>
                             
                         </div>
@@ -69,60 +73,32 @@
                                 <td class="title">아이디</td>
                                 <td><%= userId %></td>
                                 <input type="hidden" name="userId" value="<%= userId %>"/>
-                                <td  class="title">닉네임</td>
-                                <td><%= userName %></td>
-                                <input type="hidden" name="userName" value="<%= userName %>"/>
                             </tr>
-                            <tr  class="mail">
-                                <td  class="title">이메일</td>
-                                <td colspan="3">
-                                    <input type="text" name="email1" id="email1" title="이메일주소를 넣어주세요." size="15"  class="input" />
-                                    &nbsp;@&nbsp;
-                                    <input type="text" name="email2" id="email2" title="이메일계정을 넣어주세요." size="18"  class="input" />
-                                    <select title="메일주소 선택하기" name="email3"  class="select" onchange="selEmail(this.value);" >
-                                        <option value="">직접입력</option>
-                                        <option value="naver.com">naver.com</option>
-                                        <option value="daum.net">daum.net</option>
-                                        <option value="nate.com">nate.com</option>
-                                        <option value="gmail.com">gmail.com</option>
-                                        <option value="hanmail.net">hanmail.net</option>
-                                        <option value="hotmail.com">hotmail.com</option>
-                                        <option value="yahoo.co.kr">yahoo.co.kr</option>
-                                        <option value="empal.com">empal.com</option>
-                                        <option value="korea.com">korea.com</option>
-                                        <option value="hanmir.com">hanmir.com</option>
-                                        <option value="dreamwiz.com">dreamwiz.com</option>
-                                        <option value="orgio.net">orgio.net</option>
-                                        <option value="korea.com">korea.com</option>
-                                        <option value="chol.com">chol.com</option>
-                                        <option value="hitel.net">hitel.net</option>
-                                    </select>
+                            <tr class="mail">
+                                <td class="title">이메일</td>
+                                <td><%= userEmail %></td>
+                            </tr>
+                            <tr class="category">
+                                <td class="title">분류</td>
+                                <td>
+                                  <% if(type==1){ %>
+                                    공지사항
+                                  <% }else if(type == 2){%>
+                                    묻고 답하기
+                                    <% } %>
                                 </td>
                             </tr>
-                            <tr  class="category">
-                                <td  class="title">분류</td>
-                                <td colspan="3">
-                                    <select name="categoryList" id="categoryList">
-                                        <option value="">게시 분류를 선택해 주세요.</option>
-                                        <% if(userName === "admin"){ %>
-                                        <option value="1">공지사항</option>
-                                        <% } %>
-                                        <option value="2">묻고 답하기</option>
-                                       
-                                        </select>
-                                </td>
-                            </tr>
-                            <tr  class="subject">
-                                <td  class="title">제목</td>
-                                <td colspan="3">
-                                    <input type="text" name="title" id="title" title="제목을 넣어주세요."  maxlength="500"  class="input" />
+                            <tr class="subject">
+                                <td class="title">제목</td>
+                                <td>
+                                    <%= title %>
                                 </td>
                             </tr>
                             <tr  class="write">
                                 <td  class="title">내용</td>
                                 <td colspan="3">
                                     <div  class="wrap" >
-                                        <textarea id="content" name="content"></textarea>
+                                        <%= description %>
                                     </div>
                                 </td>
                             </tr>
@@ -136,9 +112,12 @@
                         </tbody>
                         </table>
                         </form>
-                        <div  class="btns">
-                            <a onclick="submit();"><img src="/img/board/admit.jpg"/></a>
-                            <a href="/board/"><img src="/img/board/cancle.jpg" /></a>
+                        <div class="btns">
+                                <% if(type==1){ %>
+                                <a href="/board/notice" class="list-button">목록보기</a>
+                                <% }else if(type == 2){%>
+                                <a href="/board/ask" class="list-button">목록보기</a>
+                                <% } %>
                         </div>
                         </div>
                     </div>

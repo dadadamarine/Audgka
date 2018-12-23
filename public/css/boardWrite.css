@@ -326,3 +326,18 @@ li.community-list__item{
      margin:20px 
      auto 80px;
 }
+.btns .list-button{
+    display: block;
+    width:150px;
+    height:30px;
+    text-align: center;
+    
+    margin-left:80px;
+    padding-top:10px;
+    font-size:0.9rem;
+    font-weight: bold;
+
+    
+    background-color:#262932;
+    color:white;
+}

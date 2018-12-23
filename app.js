@@ -5,7 +5,8 @@ var bodyParser = require('body-parser'); // post 라우팅시 req.body를 사용
 var mysql = require("mysql"); 
 var js_sha2 = require("sha256"); // 비밀번호 해싱을 위한 모듈
 var session = require("express-session");
-//정적인 파일의 위치 디렉토리를 지정
+var fs = require('fs');
+//정적인 파일의 위치 디렉토리를 지정 
 //public폴더에 정적인 파일 가져다 두면, 사용자 에게 정적인 파일을 서비스 할 수 있음.    
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:false})); //이 app으로 들어오는 모든 요청은 이 미들웨어를 먼저 통과한 후에 라우터가 동작하게 됨
@@ -83,7 +84,7 @@ app.get("/board" , (req,res)=>{
     res.redirect('/board/notice');
 })
 app.get("/board/notice" , (req,res)=>{
-    var sql = 'SELECT userId, title FROM posts WHERE type = 1';
+    var sql = 'SELECT userId, title, id FROM posts WHERE type = 1';
     connection.query(sql, (err, rows, fields)=>{
         if(err) {
             console.log(err);
@@ -95,7 +96,7 @@ app.get("/board/notice" , (req,res)=>{
     })
 })
 app.get("/board/ask" , (req,res)=>{
-    var sql = 'SELECT userId, title FROM posts WHERE type = 2';
+    var sql = 'SELECT userId, title, id FROM posts WHERE type = 2';
     connection.query(sql, (err, rows, fields)=>{
         if(err) {
             console.log(err);
@@ -116,6 +117,24 @@ app.get("/board/new" , (req,res)=>{
         res.redirect('/auth/login');
     }
 })
+
+app.get("/board/:id" , (req,res)=>{
+    var id = req.params.id;
+    var userName = req.session.userName;
+    var sql = "SELECT * FROM posts WHERE id = ?";
+    connection.query(sql, [id], (err, rows, fields)=>{
+        if(err){
+            console.log(err);
+            res.status(500).send("해당 게시물이 없습니다");
+        }else{
+            var row = rows[0];
+            res.render('boardDetail.ejs', {userName:userName , userId : row.userId, userEmail: row.userEmail, type : row.type, title : row.title, description: row.description});   
+        }
+    });
+});
+
+
+
 app.post("/board/new" , (req,res)=>{
     console.log(req.body);
     var userId= req.body.userId;
@@ -309,7 +328,8 @@ app.get('/audgka/:id/make', (req,res)=>{
         req.session.count=1;
     }
     res.send("result = " + req.session.count);  */
-    res.render('maker.ejs' , {userName : req.session.userName});
+    var number = req.params.id;
+    res.render('templates/template_'+number+'.ejs' , {userName : req.session.userName});
 });
 
 /* 
@@ -407,6 +427,85 @@ app.get('/setting/mysql',(req,res)=>{
         }
 
     });
+})
+app.get('/setting/mysql/templates',(req,res)=>{
+    var sql = "CREATE TABLE templates ( id INT unsigned NOT NULL AUTO_INCREMENT, userId INT NOT NULL, title varchar(150) NOT NULL , content LONGTEXT NOT NULL, created DATETIME NULL, hit INT unsigned NOT NULL default '0', reviews int(10) unsigned NOT NULL default '0', PRIMARY KEY (id) )";
+    /* 수정  : ALTER TABLE posts CHANGE usedId userId varchar(30) NOT NULL; */
+    // 한글 ALTER TABLE posts convert to charset utf8
+    connection.query(sql,(err, rows, fields)=>{
+        if(err) {
+            console.log(err);
+            res.status(500).send("테이블 생성 오류");
+        }else{
+            res.send(rows);
+        }
+
+    });
+})
+
+app.get('/setting/mysql/user_templates',(req,res)=>{
+    var sql = "CREATE TABLE templates ( id INT unsigned NOT NULL AUTO_INCREMENT, userId varchar(150) NOT NULL, title varchar(150) NOT NULL , content LONGTEXT NOT NULL, created DATETIME NULL, hit INT unsigned NOT NULL default '0', reviews int(10) unsigned NOT NULL default '0', PRIMARY KEY (id) ) DEFAULT CHARSET=utf8";
+    /* 수정  : ALTER TABLE posts CHANGE usedId userId varchar(30) NOT NULL; */
+    // 한글 ALTER TABLE posts convert to charset utf8
+    connection.query(sql,(err, rows, fields)=>{
+        if(err) {
+            console.log(err);
+            res.status(500).send("테이블 생성 오류");
+        }else{
+            res.send(rows);
+        }
+
+    });
+})
+app.get('/setting/mysql/user_templates/add',(req,res)=>{
+/*     var sql = "CREATE TABLE templates ( id INT unsigned NOT NULL AUTO_INCREMENT, userId varchar(150) NOT NULL, template_id INT NOT NULL , content LONGTEXT NOT NULL, created DATETIME NULL, hit INT unsigned NOT NULL default '0', reviews int(10) unsigned NOT NULL default '0', PRIMARY KEY (id) )"; */
+    /* 수정  : ALTER TABLE posts CHANGE usedId userId varchar(30) NOT NULL; */
+    // 한글 ALTER TABLE posts convert to charset utf8
+  /*   connection.query(sql,(err, rows, fields)=>{
+        if(err) {
+            console.log(err);
+            res.status(500).send("테이블 생성 오류");
+        }else{
+            res.send(rows);
+        }
+
+    }); */
+    res.render('audgka.ejs');
+    console.log('audgka.ejs');
+})
+
+
+app.get('/templates/add',(req,res)=>{
+    res.render('templateAdd.ejs');
+});
+
+app.post('/templates/add', (req, res)=>{
+  let userId = req.body.userId;
+  let title = req.body.title;
+  let content = req.body.content;
+  sql = "INSERT INTO TEMPLATES (userId, title, content) VALUES(?,?,?)" 
+  var params = [userId , title, content];
+  connection.query(sql, params, (err, rows,fields)=>{
+    if(err) {
+        console.log(err);
+        res.status(500).send("Internal server error");
+    }else{
+        let pk = rows.insertId;
+        let fileName = 'templates/template_'+pk+'.ejs';
+        //저장 후 렌더링 시켜서 보이기
+        
+        fs.writeFile("./views/"+fileName , content, 'utf-8', (e)=>{
+            if(e){
+                console.log(e);
+                res.send("fs error" );
+            }else{
+                console.log("음");
+                res.redirect('/audgka/'+ pk +'/make');
+                //? 스크립트를 폼으로 받아,  렌더링 페이지를 넘겨줄때 문제가 생김.
+            }
+        });
+    }
+  }) 
 })
 
 
