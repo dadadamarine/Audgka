@@ -321,6 +321,9 @@ app.post("/auth/signup", (req,res)=>{
 
 });
 
+
+
+//제작페이지
 app.get('/audgka/:id/make', (req,res)=>{
     /* if(req.session.count){
         req.session.count++;
@@ -328,6 +331,21 @@ app.get('/audgka/:id/make', (req,res)=>{
         req.session.count=1;
     }
     res.send("result = " + req.session.count);  */
+    var number = req.params.id;
+    //res.render('templates/template_'+number+'.ejs' , {userName : req.session.userName});
+    res.render('maker.ejs' , {userName : req.session.userName, templateId : number}); 
+    // req에서 파라미터로 전송된 id 값을 템플릿에 전송해줌.
+});
+
+
+//명함 등록요청
+app.post('/audgka/:id/make', (req,res)=>{
+    var cardUrl = req.body.url;
+    var ogTitle = req.body.ogTitle;
+    var ogDescription = req.body.ogDescription;
+    var ogImage = req.body.ogImage; //#issue submit한 이미지를 받는법.
+    console.log(ogImage);
+    console.log(typeof(ogImage));
     var number = req.params.id;
     //res.render('templates/template_'+number+'.ejs' , {userName : req.session.userName});
     res.render('maker.ejs' , {userName : req.session.userName, templateId : number}); 

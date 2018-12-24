@@ -2942,7 +2942,7 @@ img size = ???-Double the 77.7% scale? OR ???-double 100% scale? double the smal
   z-index: 20;
 }
 .display-none{
-  /* display:none; */
+  display:none;
 }
 
 .share-form{

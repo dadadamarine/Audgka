@@ -445,8 +445,9 @@
     <form action="" method="post" class="share-form">
         <div class="share-form_line">
             <label for="ogDescription">링크주소 설정</label>   
-            <div class="block-input">http://www.audgka.com/about/</div>
-            <input class="link-address" type="text" name="address" value="적용할 주소">
+            <div class="block-input">www.audgka.com/about/</div>
+            <input class="link-address" type="text" name="url" 
+            placeholder="적용할 주소">
         </div>
         <div class="share-form_line">
             <label for="ogTitle">타이틀 설정</label>
@@ -466,7 +467,7 @@
         </div>
         <div class="button-section">
             <button class="community-banner__item community-banner__item--selected" type="submit">등록</button>
-            <button class="community-banner__item" onclick="onCloseClicked(this)">취소</button>
+            <button type="button" class="community-banner__item" onclick="onCloseClicked(this)">취소</button>
         </div>
         
     </form>
