@@ -1,6 +1,11 @@
+var shareUrl;
+
 /* 템플릿으로 명함을 만드는 메서드 */
 window.onload=function(){
     
+
+
+
     /* 클릭, 더블클릭 이벤트 리스너 등록 */
     let cardTag = document.getElementById("P1-wrap"); //명함에 리스너 추가
     console.log(cardTag);
@@ -161,7 +166,7 @@ function isTextTag(e){
     //console.log("isTextTag, 태그명 : " +tagName);
     switch(tagName){
         case 'h1'   :
-        case 'h2'   :
+        case 'h2'   :   
         case 'h3'   :
         case 'h4'   :
         case 'h5'   :
@@ -173,3 +178,24 @@ function isTextTag(e){
 }
 
 
+function onAddClicked(target){
+    let item = document.querySelector("#link-box-cover");
+    item.classList.remove('display-none');
+    target.classList.add('menu-clicked');
+}
+
+function onCloseClicked(target){
+    let item = document.querySelector("#link-box-cover");
+    item.classList.add('display-none');
+    document.getElementById("cardAdd").classList.remove('menu-clicked');
+}
+function onshareClicked(target){
+    //클립보드에 복사시키기
+    shareUrl ="www.audgka.com/about/kcj0205"
+    //prompt("이 명함의 주소가 복사되었습니다. \n게시판이나 메신저 창에서 Ctrl+V를 눌러보세요.", url );
+    prompt("다음의 주소를 복사하여 게시판이나 \n메신저 창에서 Ctrl+V를 눌러보세요.", shareUrl );
+}
+function loadFile(event){
+    var output = document.getElementById("output");
+    output.src=URL.createObjectURL(event.target.files[0]);
+}

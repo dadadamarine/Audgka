@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>I AM</title>
     <link rel="stylesheet" href="/css/maker.css">
-    <link rel="stylesheet" href="/css/board.css">
     <meta property="og:title" content="I AM">
     <meta property="og:description" content="명함 제작 페이지 'I AM'을 통해 제작되었습니다.">
     <meta property="og:image" content="http://www.audgka.com/img/card/os.png">
@@ -31,19 +30,17 @@
             <img src="/img/make/icon_hamburger.png" alt="">
         </div>
         <ul class="nav_menu-list">
-            <!-- 
             <li>
                 <img src="/img/make/icon_preview.png" alt="">
                 <a href="">미리보기</a>
             </li>
-             -->
             <li>
                 <img src="/img/make/icon_share.png"  alt="">
-                <a id="cardShare" onclick="onshareClicked(this);">공유하기</a>
+                <a href="/audgka/1">공유</a>
             </li>
             <li>
                 <img src="/img/make/icon_hamburger.png"  alt="">
-                <a id="cardAdd" onclick="onAddClicked(this);">등록하기</a>
+                <a href="">임시저장</a>
             </li>
         </ul>
         <div class="nav_info">
@@ -58,6 +55,25 @@
     </div>
     <div id="makerSection" class="maker-section">
     <!-- 우측 편집박스 -->
+    <div id="toolBox" class="tool-box">
+        <div class="tool-box_title">
+            <p>본문텍스트</p>
+        </div>
+        <div class="tool-box_content-cover">
+            <ul class="tool-box_content-list">
+                <li class="tool-box_content-list_item"><a href=""> <span>색상</span> black</a></li>
+                <li class="tool-box_content-list_item"><a href=""> <span>색상</span> black</a></li>
+                <li class="tool-box_content-list_item"><a href=""> <span>색상</span> black</a></li>
+                <li class="tool-box_content-list_item"><a href=""> <span>색상</span> black</a></li>
+                <li class="tool-box_content-list_item"><a href=""> <span>색상</span> black</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
 
     <div id="consoleMSG" class=""></div>
 
@@ -68,7 +84,325 @@
     </div>
 
     <div id="PGs-Wrap" class="pages-container" >
-        <iframe src="/audgka/template/<%= templateId %>" frameborder="0" width=100% height=100% scrolling=no ></iframe>
+
+    <section id="P1-wrap" class="full-page-wrap">
+
+
+        <!-- 텍스트 편집 박스 -->
+        <div id="textEditBoxCover" class="text-edit-box_cover">
+            <div id="textEditBox" class="text-edit-box">
+                <div id="textEditToolbar" class="text-edit-box_toolbar">
+        
+                </div>
+                <textarea id="textArea" class="text-edit-box_textarea" name="text" id="" cols="30" rows="10" style="width:200px; height:100px; text-align: center; font-size:1rem;"></textarea>
+            </div>
+        </div>
+
+
+        <div id="P1-Social-Links" class="social-links">
+        <div id="" class="social-flag">
+            <i class="material-icons">more_vert</i>
+            <!--sort, apps, toc, linear_scale, layers, cloud queue, more ve rt, public -->
+        </div>
+        <h2 class="">social</h2>
+        </div>
+
+        <div id="P1-Left" class="page-left-half">
+        <div id="P1-Left-Body" class="left-body-wrap">
+            <div id="P1-Statement" class="body-copy">
+            <h1 style="">'I AM'<br></h1>
+            <h2>Psychology</h2>
+            <h3>WEB Front-End </h3>
+            <p>“좋은 디자인은 그 때문에 소모되는 비용보다 빠르게 가치가 쌓인다.”
+                    <br/> – 토마스 C. 게일(Thomas C. Gale) 
+            <br/><br/>
+            “말은 쉽지, 코드를 보여줘.”
+            </br> – 리누스 토르발스(Linus Torvalds)</p>
+            </div>
+        </div>
+
+        <div id="Project-Desc-Wrap" class="">
+            <div id="Project-Desc-BG" class="First">
+            <!--      <div id="Particle-1" class="BG-particle"></div>
+                    <div id="Particle-2" class="BG-particle"></div>
+                    <div id="Particle-3" class="BG-particle"></div>
+                    <div id="Particle-4" class="BG-particle"></div>
+                    <div id="Particle-5" class="BG-particle"></div>
+                    <div id="Particle-6" class="BG-particle"></div>
+                    <div id="Particle-7" class="BG-particle"></div>  -->
+            </div>
+
+            <div id="Mixin-Desc-Body" class="project-desc-body active">
+            <div class="desc-h1-cont">
+                <h1>Mixin</h1>
+                <h4 class="verticalText">2<br>0<br>1<br>6</h4>
+            </div>
+
+            <h3>01</h3>
+
+            <p class='pSpan_1'><span>Mixin is a social music app with the power </span>
+                <span>of the user in mind. Cloud hosting and </span>
+                <span>intelligent algorythms curate suggestions </span>
+                <span>to create an intimate experience.</span></p>
+            <a class="inkAnchor" data-target-expand-project="#Mixin-Expand"> EXPAND  +</a>
+            <div class='disc-container'>
+                <h5 class="discipline disc-interaction">Interaction</h5>
+                <h5 class="discipline disc-UIUX">UI / UX</h5>
+            </div>
+            <div class="h4-HR desc-HR"></div>
+            <div class="h4-VR-B"></div>
+            <div class="h3-HR desc-HR"></div>
+
+            </div>
+
+            <div id="Weedmaps-Desc-Body" class="project-desc-body">
+            <div class="desc-h1-cont">
+                <h1>Weedmaps</h1>
+                <h4 class="verticalText">2<br>0<br>1<br>6</h4>
+            </div>
+
+            <h3>02</h3>
+
+            <p class='pSpan_2'><span>Launch of redesign codenamed ‘Blue Dream’.</span>
+                <span>I was contracted to work in-house with the </span>
+                <span>design team to produce a motion graphic </span>
+                <span>video showcasing the new UX.</span></p>
+            <a class="inkAnchor  lite-B" data-target-expand-project="#Weedmaps-Expand"> EXPAND  +</a>
+            <h5 class="discipline disc-UI-UX"></h5>
+            <h5 class="discipline disc-idenity"></h5>
+            <div class="h4-HR desc-HR  lite-W"></div>
+            <div class="h3-HR desc-HR"></div>
+            </div>
+
+            <div id="Hurley-Desc-Body" class="project-desc-body">
+            <div class="desc-h1-cont">
+                <h1>Hurley Int.</h1>
+                <h4 class="verticalText">2<br>0<br>1<br>5</h4>
+            </div>
+            <h2 class="//hurley-h2">NIKE</h2>
+            <h3>03</h3>
+
+            <p class='pSpan_3'><span>Two complete apparel lines. Nike/Hurley </span>
+                <span>class for upper-level & honors students. </span>
+                <span>Hosted and critiqued by the company’s lead </span>
+                <span>designers at their Pasadena HQ.</span></p>
+            <a class="inkAnchor" data-target-expand-project="#Hurley-Expand"> EXPAND  +</a>
+            <h5 class="discipline disc-UI-UX"></h5>
+            <h5 class="discipline disc-idenity"></h5>
+            <div class="h4-HR desc-HR  lite-B"></div>
+            <div class="h3-HR desc-HR"></div>
+            </div>
+
+            <div id="LCAD-Desc-Body" class="project-desc-body">
+            <div class="desc-h1-cont">
+                <h1>Capstone</h1>
+                <h4 class="verticalText">2<br>0<br>1<br>5</h4>
+            </div>
+            <h2 class="">LCAD</h2>
+            <h3>04</h3>
+
+            <p class='pSpan_4'><span>Senior Thesis reel featured in LCAD's</span>
+                <span>'Alumni Spotlight'. Music production with</span>
+                <span>choreographed motion graphics based on the </span>
+                <span>creation of my brand identity & album art.</span></p>
+
+            <a class="inkAnchor"> EXPAND  +</a>
+            <h5 class="discipline disc-UI-UX"></h5>
+            <h5 class="discipline disc-idenity"></h5>
+            <div class="h4-HR desc-HR"></div>
+            <div class="h3-HR desc-HR"></div>
+            </div>
+
+            <div id="SelfBrand-Desc-Body" class="project-desc-body">
+            <div class="desc-h1-cont">
+                <h1>Branding</h1>
+                <h4 class="verticalText">2<br>0<br>1<br>5</h4>
+            </div>
+            <h2 class="">SELF</h2>
+            <h3>05</h3>
+
+            <p class='pSpan_5'><span>Personal identity project consisting of</span>
+                <span>logomark + font design & self-portraits.</span>
+                <span>Exploration of typography, color theory,</span>
+                <span>and design language to express my ethos.</span></p>
+
+            <a class="inkAnchor"> EXPAND  +</a>
+            <h5 class="discipline disc-UI-UX"></h5>
+            <h5 class="discipline disc-idenity"></h5>
+            <div class="h4-HR desc-HR  lite-B"></div>
+            <div class="h3-HR desc-HR"></div>
+            </div>
+            <!-- Illustration Desc Start  6/10-->
+            <div id="TrifectaSkate-Desc-Body" class="project-desc-body">
+            <div class="desc-h1-cont">
+                <h1>'Trifecta'</h1>
+                <h4 class="verticalText">2<br>0<br>1<br>5</h4>
+            </div>
+            <h2 class="">SKATE</h2>
+            <h3>06</h3>
+
+            <p class='pSpan_5'><span>Series of 3 digitally painted skate decks.</span>
+                <span>One primary illustration split into two</span>
+                <span>designs focusing on the contrasting themes</span>
+                <span>Creativity & Life Vs. Temptation & Death.</span></p>
+
+            <a class="inkAnchor"> EXPAND  +</a>
+            <h5 class="discipline disc-UI-UX"></h5>
+            <h5 class="discipline disc-idenity"></h5>
+            <div class="h4-HR desc-HR"></div>
+            <div class="h3-HR desc-HR"></div>
+            </div>
+
+            <div id="Offworld-Desc-Body" class="project-desc-body">
+            <div class="desc-h1-cont">
+                <h1>Offworld EP</h1>
+                <h4 class="verticalText">2<br>0<br>1<br>5</h4>
+            </div>
+            <h2 class="">COVER</h2>
+            <h3>07</h3>
+
+            <p class='pSpan_5'><span>Series of 3 digitally painted skate decks.</span>
+                <span>One primary illustration split into two</span>
+                <span>designs focusing on the contrasting themes</span>
+                <span>Creativity & Life Vs. Temptation & Death.</span></p>
+
+            <a class="inkAnchor"> EXPAND  +</a>
+            <h5 class="discipline disc-UI-UX"></h5>
+            <h5 class="discipline disc-idenity"></h5>
+            <div class="h4-HR desc-HR"></div>
+            <div class="h3-HR desc-HR"></div>
+            </div>
+
+            <div id="Grime-Desc-Body" class="project-desc-body">
+            <div class="desc-h1-cont">
+                <h1>Grime Sig.</h1>
+                <h4 class="verticalText">2<br>0<br>1<br>5</h4>
+            </div>
+            <h2 class="">TITLE</h2>
+            <h3>08</h3>
+
+            <p class='pSpan_5'><span>Series of 3 digitally painted skate decks.</span>
+                <span>One primary illustration split into two</span>
+                <span>designs focusing on the contrasting themes</span>
+                <span>Creativity & Life Vs. Temptation & Death.</span></p>
+
+            <a class="inkAnchor lite-B"> EXPAND  +</a>
+            <h5 class="discipline disc-UI-UX"></h5>
+            <h5 class="discipline disc-idenity"></h5>
+            <div class="h4-HR desc-HR  lite-W"></div>
+            <div class="h3-HR desc-HR"></div>
+            </div>
+
+        </div>
+        </div>
+
+        <div id="P1-Right" class="page-right-half">
+        <div id="P1-Right-Body" class="right-body-wrap">
+            <div id="" class="inset-image">
+            <div id="inset-geo-H" class="inset-geo-bar"></div>
+            <div id="inset-geo-V" class="inset-geo-bar"></div>
+            <p class="SF-text">Recent Work</p>
+            </div>
+        </div>
+        <div id="Project-Menu-Center-Under" class='project-center-wrap'></div>
+
+        <div id="Project-Menu-Wrap">
+
+            <div id="Tri-Mask">
+            <div id="Xit-Triangle" data-target-project="#Mixin-Desc-Body">
+                <div id="Tri-Extend"></div>
+            </div>
+            <h1 id="XitPlus">+</h1>
+            </div>
+
+            <div id="Project-OverHead">
+            <h2>PROJECTS</h2>
+            </div>
+
+            <div id="Project-UL-List" class="">
+            <ul>
+                <li id="Mixin-LI" class="project-li upper active" data-target-project="#Mixin-Desc-Body" data-target-bg="rgb(55,120,255)"> <a class="inkAnchor" data-target-expand-project="#Mixin-Expand">Mixin™</a> </li>
+                <li id="Weedmaps-LI" class="project-li upper" data-target-project="#Weedmaps-Desc-Body" data-target-bg="rgb(0,203,188)"> <a class="inkAnchor" data-target-expand-project="#Weedmaps-Expand">Weedmaps®</a> </li>
+                <li id="Hurley-LI" class="project-li upper" data-target-project="#Hurley-Desc-Body" data-target-bg="rgb(245,78,84)"> <a class="inkAnchor" data-target-expand-project="#Hurley-Expand">Hurley® Int.</a> </li>
+                <li id="LCAD-LI" class="project-li upper" data-target-project="#LCAD-Desc-Body" data-target-bg="rgb(0,188,212)"> <a href="">LCAD Capstone</a> </li>
+                <li id="SelfBrand-LI" class="project-li upper" data-target-project="#SelfBrand-Desc-Body" data-target-bg="rgb(204,178,150)"> <a href="">Self Branding</a> </li>
+
+                <li id="TrifectaSkate-LI" class="project-li lower" data-target-project="#TrifectaSkate-Desc-Body" data-target-bg="rgb(116, 81, 255)"> <a href="">Trifecta Skate</a> </li>
+                <li id="OffworldEP-LI" class="project-li lower" data-target-project="#Offworld-Desc-Body" data-target-bg="rgb(96, 125, 139)"><a href="">Offworld EP</a> </li>
+                <li id="GrimeTitle-LI" class="project-li lower" data-target-project="#Grime-Desc-Body" data-target-bg="rgb(245, 175, 0)"> <a href="">Grime Title</a> </li>
+                <li id="TronRiseOf-LI" class="project-li lower"> <a href="">Tron: Rise of... </a> </li>
+                <li id="Self-Illusion-LI" class="project-li lower"> <a href="">Self-Illusion</a> </li>
+
+                <li id="TraditionalArt-LI" class="project-li lower"> <a href="">Traditional Art</a> </li>
+                <li id="Eyes-LI" class="project-li lower"> <a href="">Eyes</a> </li>
+            </ul>
+            <div id="Project-Menu-Center-Over" class='project-center-wrap'>
+                <h3 id="Design_Digital-Cat" class="project-category">Design<br>&<br>Digital<br>Media</h3>
+                <h3 id="Illustration-Cat" class="project-category">Illust.</h3>
+                <h3 id="Trad_Art-Cat" class="project-category">Trad.<br>Art</h3>
+            </div>
+            </div>
+
+        </div>
+        </div>
+<!-- 상단 ul태그 -->
+        <div id="P1-Top" class="Border-Top page-H-border">
+        <ul class="H-border-list">
+            <li class="border-item border-12th">
+            <p><img src="/img/card/logo.png" alt=""></p>
+            </li>
+            <li class="border-item border-6th">
+            <p>Graphic<br>Design</p>
+            </li>
+            <li class="border-item border-6th">
+            <p>Motion Graphics<br>3D Render</p>
+            </li>
+            <li class="border-item border-6th">
+            <p>Front-End<br>Dev.</p>
+            </li>
+            <li class="border-item border-6th">
+            <p>Illustration<br>Dig. Painting</p>
+            </li>
+            <li class="border-item border-6th">
+            <p>Music Production<br>Mixing</p>
+            </li>
+            <li class="border-item border-12th"><br></li>
+        </ul>
+        </div>
+        <div id="Page-Bottom-Nav" class="Border-Bottom page-H-border">
+        <ul class="H-border-list">
+            <li class="border-item border-12th">
+            <p></p>
+            </li>
+            <li class="border-item border-12th current-page">
+            <a href="#PG-Wrap" class=''>
+                <p>Home &nbsp 01</p>Home &nbsp 01</a>
+            </li>
+            <li class="border-item border-12th">
+            <a href="#PG-Wrap">
+                <p>Personal &nbsp 02</p>Personal &nbsp 02</a>
+            </li>
+            <li class="border-item border-12th">
+            <a href="#PG-Wrap">
+                <p>Contact &nbsp 03</p>Contact &nbsp 03</a>
+            </li>
+            <li class="border-item border-12th">
+            <a href="#PG-Wrap">
+                <p>Social &nbsp 04</p>Social &nbsp 04</a>
+            </li>
+            <li class="border-item border-12th">
+            <p></p>
+            </li>
+        </ul>
+        </div>
+        <div id="" class="page-number">
+        <h1>01<span>/04</span>
+            <h1>
+        </div>
+
+        <div id="" class="inner-expand"></div>
+    </section>
+
     <div id="" class="GRID_OVER">
         <ul class="GRID_12-Cols">
         <li></li>
@@ -437,44 +771,7 @@
     </defs>
     </svg>   -->
     </div>
-
-
-
-    <!-- 공유시   -->
-   <div id="link-box-cover" class="link-box-cover display-none">
-    <form action="" method="post" class="share-form">
-        <div class="share-form_line">
-            <label for="ogDescription">링크주소 설정</label>   
-            <div class="block-input">http://www.audgka.com/about/</div>
-            <input class="link-address" type="text" name="address" value="적용할 주소">
-        </div>
-        <div class="share-form_line">
-            <label for="ogTitle">타이틀 설정</label>
-            <input type="text" name="ogTitle">
-        </div>
-        <div id="shareFormDescription" class="share-form_line">
-            <label for="ogDescription">명함설명 설정</label>
-            <textarea rows="3" name="ogDescription"></textarea>
-        </div>
-        <div class="share-form_line">
-            <label for="ogImage">미리보기 이미지</label>
-            <div class="share-form_img-block">
-                <img id="output" class="output-image" src="" alt="">
-                <input type="file" onchange="loadFile(event)"  name="ogImage">
-            </div>
-            
-        </div>
-        <div class="button-section">
-            <button class="community-banner__item community-banner__item--selected" type="submit">등록</button>
-            <button class="community-banner__item" onclick="onCloseClicked(this)">취소</button>
-        </div>
-        
-    </form>
-    
-   </div>
-
    <script src="/js/audgka.js"></script>
    <script src="/js/maker.js"></script>
-
 </body>
 </html>

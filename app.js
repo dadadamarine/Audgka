@@ -329,9 +329,15 @@ app.get('/audgka/:id/make', (req,res)=>{
     }
     res.send("result = " + req.session.count);  */
     var number = req.params.id;
-    res.render('templates/template_'+number+'.ejs' , {userName : req.session.userName});
+    //res.render('templates/template_'+number+'.ejs' , {userName : req.session.userName});
+    res.render('maker.ejs' , {userName : req.session.userName, templateId : number}); 
+    // req에서 파라미터로 전송된 id 값을 템플릿에 전송해줌.
 });
 
+app.get('/audgka/template/:id', (req,res)=>{
+    var number = req.params.id;
+    res.render('templates/template_'+number+'.ejs' , {userName : req.session.userName});
+});
 /* 
 app.get('/topic/add', (req,res)=>{
     var sql = "SELECT id, title FROM topic";
@@ -390,8 +396,10 @@ app.post('/topic', (req,res)=>{
 })
 
 
-app.get("/audgka/:id", (req, res)=>{
-    res.render('audgka.ejs');
+app.get("/about/:name", (req, res)=>{
+    let name = req.params.name;
+
+    res.render('about/'+name+'.ejs');
 });
 
 

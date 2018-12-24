@@ -20,6 +20,9 @@ blockquote:before,blockquote:after,q:before,q:after{
 table{
     border-collapse:collapse;border-spacing:0
 }
+a:visited{
+  color:#333333;
+}
 
 /* nav */
 
@@ -29,6 +32,7 @@ table{
     height:60px;
     width:100%;
     background:white;
+    border-bottom:1px solid transparent;
     box-shadow:0 1px 1px 1px #dfdfdf;
 }
 
@@ -74,6 +78,7 @@ table{
     white-space:nowrap;
 }
 .nav_menu-list>li{
+    
     float:left;
     color:#333333;
     font-weight: bold;
@@ -85,7 +90,12 @@ table{
     height:16px;
     margin-right:3px;
 }
-
+.nav_menu-list a{
+  cursor: pointer;
+}
+.nav_menu-list a:hover{
+  color:pink;
+}
 .nav_menu-list a:visited{
     color:#333333;
 }
@@ -93,6 +103,7 @@ table{
     background:#f1f2f5;
     width:100%;
     height:calc(100% - 60px);
+    padding-top:65px;
     overflow: hidden;
     position: relative;
 }
@@ -2920,3 +2931,96 @@ img size = ???-Double the 77.7% scale? OR ???-double 100% scale? double the smal
 	}
 }
 */
+
+.link-box-cover{
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background:rgba(0,0,0,0.5);
+  z-index: 20;
+}
+.display-none{
+  /* display:none; */
+}
+
+.share-form{
+  background-color:white;
+  width:600px;
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+.cancel-button{
+  cursor: pointer;
+  background-color:black;
+  color:white;
+  position: relative;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+.share-form label{
+  font-size:16px;
+}
+.share-form_line{
+  width:100%;
+  margin:15px 0;
+  padding:0 20px;
+  box-sizing: border-box;
+}
+.share-form_line>label{
+  display: inline-block;
+  width:30%;
+  text-align: left;
+  vertical-align: top;
+  margin-top:15px;
+  padding-left:5px;
+}
+.share-form_line>input{
+  width: 60%;
+  padding:5px;
+  border:1px solid rgba(0,0,0 ,0.2);
+}
+.share-form_line>textarea{
+  width: 60%;
+  padding:5px;
+  border:1px solid rgba(0,0,0 ,0.2);
+
+}
+
+.menu-clicked{
+  color:pink !important;
+}
+.share-form_img-block{
+  display: inline-block;
+  width:60%;
+  box-sizing: border-box;
+}
+.share-form_img-block>img{
+  display: block;
+  width:100%;
+  margin-bottom:10px;
+}
+.share-form_img-block>input{
+  display: block;
+  width:100%;
+  border:none;
+}
+.block-input{
+  font-size:16px;
+  display:inline;
+}
+input.link-address{
+  width:95px;
+  padding:3px;
+  margin-left:-7px;
+}
+
+.button-section{
+  width: 288px;
+  margin: 40px auto 30px;
+}
