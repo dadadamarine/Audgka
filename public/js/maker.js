@@ -179,7 +179,7 @@ function isTextTag(e){
 
 function onPreviewClicked(target){
     let templateSource= document.getElementById("templateFrame").contentWindow.document.documentElement.outerHTML;
-    console.log("" + templateSource);
+    //console.log("" + templateSource);
     let form = document.getElementById("previewForm");
 
     document.getElementById("previewSource").value = templateSource;
@@ -188,13 +188,16 @@ function onPreviewClicked(target){
     //#issue 미리보기 기능
 }
 function onAddClicked(target){
+    //템플릿 소스 input에 등록
+    let templateSource = document.getElementById("templateFrame").contentWindow.document.documentElement.outerHTML;
+    document.getElementById("templateSourceInput").value = templateSource;
+    console.log(templateSource);
+
+    //창열기
     let item = document.querySelector("#link-box-cover");
     item.classList.remove('display-none');
     target.classList.add('menu-clicked');
-    let templateSource= document.getElementById("templateFrame").contentDocument;
-    console.log(templateSource);
-    console.log(typeof(templateSource));
-    document.getElementById("templateSource").value= templateSource;
+ 
 }
 
 function onCloseClicked(target){

@@ -260,7 +260,8 @@ app.post("/auth/delete" , (req,res)=>{
 })
 
 app.get("/auth/login", (req,res)=>{ // 라우터 , 로그인 페이지
-    res.render('login.ejs');
+    var msg = req.query.msg;
+    res.render('login.ejs', {msg : msg});
 });
 
 app.post("/auth/login", (req,res)=>{ // 로그인 요청
@@ -340,38 +341,93 @@ app.get('/audgka/:id/make', (req,res)=>{
 
 //명함 등록요청
 app.post('/audgka/:id/make', (req,res)=>{
-    var cardUrl = req.body.url;
+    var userId = req.session.userId;
+    var address = req.body.url; // 카드의 url
     var ogTitle = req.body.ogTitle;
     var ogDescription = req.body.ogDescription;
     var ogImage = req.body.ogImage; //#issue submit한 이미지를 받는법.
-    console.log(ogImage);
-    console.log(typeof(ogImage));
-    var number = req.params.id;
+    var templateSource = req.body.templateSource;
+    var templateId = req.params.id;
+    var userId = req.session.userId;
+    if(!userId) res.redirect('/auth/login'+'?msg=로그인이 필요한 서비스입니다.');
+
+    var sql = "SELECT address FROM user_templates WHERE address = ?"
+    connection.query(sql, [address], (err, rows, fields)=>{
+        if(err){
+            console.log(err);
+            res.status(500).send("inner DB error");
+        }else{
+            if(rows[0]){
+                console.log("명함 주소 중복");
+                res.send("명함 주소가 중복되었습니다.");
+            }else{
+                //중복 아닐경우
+                sql = "INSERT INTO user_templates (templateId, userId, title, content, ogTitle, ogDescription, ogImage, address) VALUE(?,?,?,?,?,?,?,?)"
+                var params = [templateId, userId, "empty", "empty", ogTitle, ogDescription, ogImage, address ];
+                connection.query(sql, params, (err,rows,fields)=>{
+                    if(err){
+                        console.log(err);
+                        res.status(500).send("inner DB error");
+                    }else{
+                        let fileName = ''+address+'.ejs';
+                
+                        fs.writeFile("./views/about/"+fileName , templateSource, 'utf-8', (e)=>{
+                            if(e){
+                                console.log(e);
+                                res.send("fs error" );
+                            }else{
+                                res.redirect('/about/'+address);
+                            }
+                        });
+                    }
+                });
+                
+            }
+            
+        }
+    });
+
+/*     let fileName = ''+address+'.ejs';
+    //저장 후 렌더링 시켜서 보이기
+    
+    fs.writeFile("./views/about/"+fileName , templateSource, 'utf-8', (e)=>{
+        if(e){
+            console.log(e);
+            res.send("fs error" );
+        }else{
+        }
+    }); */
+
+
     //res.render('templates/template_'+number+'.ejs' , {userName : req.session.userName});
-    res.render('maker.ejs' , {userName : req.session.userName, templateId : number}); 
-    // req에서 파라미터로 전송된 id 값을 템플릿에 전송해줌.
+    //res.render('maker.ejs' , {userName : req.session.userName, templateId : number}); 
 });
 
+app.get('/about/:id', (req,res)=>{
+    var id = req.params.id;
+    res.render('about/'+id+'.ejs', {});
+});
 
+app.get('/about/preview', (req,res)=>{
+    res.render('about/preview.ejs', {});
+});
 //명함 미리보기 post요청
 app.post('/about/preview', (req,res)=>{
     var previewSource = req.body.previewSource;
     console.log(previewSource);
     let fileName = 'preview.ejs';
-        //저장 후 렌더링 시켜서 보이기
-        
-        fs.writeFile("./views/about/"+fileName , previewSource, 'utf-8', (e)=>{
-            if(e){
-                console.log(e);
-                res.send("fs error" );
-            }else{
-                res.redirect('/about/preview');
-            }
-        });
+    //저장 후 렌더링 시켜서 보이기
+    
+    fs.writeFile("./views/about/"+fileName , previewSource, 'utf-8', (e)=>{
+        if(e){
+            console.log(e);
+            res.send("fs error" );
+        }else{
+            res.redirect('/about/preview');
+        }
+    });
 });
-app.get('/about/preview', (req,res)=>{
-    res.render('about/preview.ejs', {});
-});
+
 
 
 
