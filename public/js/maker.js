@@ -1,21 +1,23 @@
 var shareUrl;
-
+    //console.log("maker.js 가져옴");
 /* 템플릿으로 명함을 만드는 메서드 */
-document.getElementById("templateFrame")=function(){
-    
-
-
-
+alert("명함의 요소를 두번 클릭하시면, \n원하시는 내용으로 바꿀 수 있습니다.");
+document.getElementById("templateFrame").onload=function(){
     /* 클릭, 더블클릭 이벤트 리스너 등록 */
-    let cardTag = document.getElementById("P1-wrap"); //명함에 리스너 추가
-    console.log(cardTag);
+    var cardFrame =document.getElementById("templateFrame");
+    //console.log("iframe 로드완료");
+    let cardTag = cardFrame.contentWindow.document.getElementById("P1-wrap"); //명함에 리스너 추가
+    console.log("카드 TAG",cardTag);
     let memory_temp;
     let isBoxClosed=1; // 1:툴박스 닫힘, 0= 툴박스 열림
     /* Tool Box 닫는 이벤트 */
     let makerSection = document.getElementById("makerSection");
+    console.log(makerSection);
     let textEditBoxCover = document.getElementById("textEditBoxCover");
-    makerSection.addEventListener("click",(e)=>{
-        if(e.target.id === "textEditBoxCover"){ // 텍스트 수정 박스 닫기 이벤트
+    
+    document.getElementById("textEditBoxCover").addEventListener("click",(e)=>{
+        if(e.target.id === "textEditBoxCover"){ 
+            // 텍스트 수정 박스 닫기 이벤트
             
             // 텍스트 상자, 텍스트 툴바 외의 검은부분을 눌렀을때 종료
             let inputText = document.getElementById("textArea").value; 
@@ -24,7 +26,12 @@ document.getElementById("templateFrame")=function(){
             closeTextEditBox(e);
             console.log("텍스트 상자 닫기 ");
             //console.log(document.getElementById("textArea").value);
-        }else if(e.target.id === "makerSection" ){
+        }
+    });
+
+    cardFrame.contentWindow.document.body.addEventListener("click", (e)=>{
+        console.log(e.target);
+       if(e.target.id === "makerSection" ){
             closeToolBox(e);
             console.log("툴박스 닫기");
             isBoxClosed=1;
@@ -98,7 +105,7 @@ document.getElementById("templateFrame")=function(){
 }
 
 function openToolBox(e){
-    document.getElementById("toolBox").style="display:block;";
+    //document.getElementById("toolBox").style="display:block;";
 }
 function closeToolBox(e){
     document.getElementById("toolBox").style="display:none;"
@@ -107,13 +114,12 @@ function openTextEditBox(e){
 
     /*  텍스트의 내용 반영 */
     let targetText = e.target.innerText;
-
+    let cardFrame = document.getElementById("templateFrame");
     document.getElementById("textArea").value = targetText;
     console.log("텍스트 창 값 : " +document.getElementById("textArea").value);
     console.log("태그의 값 : " +targetText);
     //console.log(textArea_innerText);
     /* text의 스타일 반영 */
-
     let fontSize = window.getComputedStyle(e.target).getPropertyValue("font-size");
     let textArea_styleQuery = "color:white; font-size:" + fontSize+ ";"
 
@@ -125,17 +131,22 @@ function openTextEditBox(e){
     let elementTop = elementOffset.top;
     let elementLeft= elementOffset.left;
     //window에서 명함 상자까지의 offset
-    let cardOffset = document.getElementById("P1-wrap").getBoundingClientRect();
+    let cardOffset = cardFrame.contentWindow.document.getElementById("P1-wrap").getBoundingClientRect();
     let cardTop = cardOffset.top;
     let cardLeft = cardOffset.left;
 
+    console.log("요소의 top, left" , elementTop, elementLeft);
+    console.log("카드의 top, left" , cardTop, cardLeft);
 /*     let cardBlockOffset = document.getElementById("PGs-Wrap").getBoundingClientRect();
     let cardBlockLeft = cardBlockOffset.left;
     // 카드~ 요소까지의 거리 */
 
     //console.log("offset들 엘리먼트, 카드순",elementTop, elementLeft, cardTop, cardLeft);
-    let top = elementTop - cardTop - 45; // 30은 text 툴바의 높이.
-    let left = elementLeft - cardLeft ; //+ cardBlockLeft
+
+/*     let top = elementTop - cardTop - 45; // 30은 text 툴바의 높이.
+    let left = elementLeft - cardLeft ; //+ cardBlockLeft */
+    let top = elementTop; // 30은 text 툴바의 높이.
+    let left = elementLeft  ; //+ cardBlockLeft
 
     // 텍스트상자는 요소의 넓이, 높이의 1.5배 가져감.
     let width = e.target.offsetWidth * 1.5;
@@ -145,6 +156,7 @@ function openTextEditBox(e){
 
 
     //위치 반영
+    /* let textEditBox_styleQuery= "position:absolute; top:"+top+"px; left:"+left+"px;  transform:translate(-16.66%, -16.66%);"; */
     let textEditBox_styleQuery= "position:absolute; top:"+top+"px; left:"+left+"px;  transform:translate(-16.66%, -16.66%);";
     //추가된 넓이 1/3의 절반인 1/6만큼 왼쪽으로 이동. , 위쪽으로는 1/6 + 툴바의 높이만큼
     //let styleQuery= "position:absolute; top:"+top+"px; left:"+left+"px;";

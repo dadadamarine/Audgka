@@ -189,7 +189,7 @@ h1:hover::before,h2:hover::before,h3:hover::before,h4:hover::before,h5:hover::be
 
 .text-edit-box_toolbar{
     height:48px;
-    color:white;
+    background-color:white;
     border:1px solid gray;
     border-radius: 3px;
     margin-bottom: -2px;
