@@ -177,11 +177,24 @@ function isTextTag(e){
     }
 }
 
+function onPreviewClicked(target){
+    let templateSource= document.getElementById("templateFrame").contentWindow.document.documentElement.outerHTML;
+    console.log("" + templateSource);
+    let form = document.getElementById("previewForm");
 
+    document.getElementById("previewSource").value = templateSource;
+    var wnd = window.open("", "previewWindow", "width=1000,height=1000");
+    form.submit();
+    //#issue 미리보기 기능
+}
 function onAddClicked(target){
     let item = document.querySelector("#link-box-cover");
     item.classList.remove('display-none');
     target.classList.add('menu-clicked');
+    let templateSource= document.getElementById("templateFrame").contentDocument;
+    console.log(templateSource);
+    console.log(typeof(templateSource));
+    document.getElementById("templateSource").value= templateSource;
 }
 
 function onCloseClicked(target){

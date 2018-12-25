@@ -352,6 +352,29 @@ app.post('/audgka/:id/make', (req,res)=>{
     // req에서 파라미터로 전송된 id 값을 템플릿에 전송해줌.
 });
 
+
+//명함 미리보기 post요청
+app.post('/about/preview', (req,res)=>{
+    var previewSource = req.body.previewSource;
+    console.log(previewSource);
+    let fileName = 'preview.ejs';
+        //저장 후 렌더링 시켜서 보이기
+        
+        fs.writeFile("./views/about/"+fileName , previewSource, 'utf-8', (e)=>{
+            if(e){
+                console.log(e);
+                res.send("fs error" );
+            }else{
+                res.redirect('/about/preview');
+            }
+        });
+});
+app.get('/about/preview', (req,res)=>{
+    res.render('about/preview.ejs', {});
+});
+
+
+
 app.get('/audgka/template/:id', (req,res)=>{
     var number = req.params.id;
     res.render('templates/template_'+number+'.ejs' , {userName : req.session.userName});
@@ -396,8 +419,6 @@ app.get(['/topic', '/topic/:id'], (req,res)=>{
         }
     });
 });
-
-
 
 app.post('/topic', (req,res)=>{
     var sql = "INSERT INTO topic (title , description, author) VALUES(?, SHA2(?,256), ?)"
@@ -455,7 +476,7 @@ app.get('/setting/mysql',(req,res)=>{
     });
 })
 app.get('/setting/mysql/templates',(req,res)=>{
-    var sql = "CREATE TABLE templates ( id INT unsigned NOT NULL AUTO_INCREMENT, userId INT NOT NULL, title varchar(150) NOT NULL , content LONGTEXT NOT NULL, created DATETIME NULL, hit INT unsigned NOT NULL default '0', reviews int(10) unsigned NOT NULL default '0', PRIMARY KEY (id) )";
+    var sql = "CREATE TABLE templates ( id INT unsigned NOT NULL AUTO_INCREMENT, userId INT NOT NULL, title varchar(150) NOT NULL , content LONGTEXT NOT NULL, created DATETIME NULL, hit INT unsigned NOT NULL default '0', reviews int(10) unsigned NOT NULL default '0', PRIMARY KEY (id) ) DEFAULT CHARSET=utf8";
     /* 수정  : ALTER TABLE posts CHANGE usedId userId varchar(30) NOT NULL; */
     // 한글 ALTER TABLE posts convert to charset utf8
     connection.query(sql,(err, rows, fields)=>{
@@ -470,7 +491,7 @@ app.get('/setting/mysql/templates',(req,res)=>{
 })
 
 app.get('/setting/mysql/user_templates',(req,res)=>{
-    var sql = "CREATE TABLE templates ( id INT unsigned NOT NULL AUTO_INCREMENT, userId varchar(150) NOT NULL, title varchar(150) NOT NULL , content LONGTEXT NOT NULL, created DATETIME NULL, hit INT unsigned NOT NULL default '0', reviews int(10) unsigned NOT NULL default '0', PRIMARY KEY (id) ) DEFAULT CHARSET=utf8";
+    var sql = "CREATE TABLE user_templates ( id INT unsigned NOT NULL AUTO_INCREMENT, templateId INT default 0, userId varchar(150) NOT NULL, title varchar(150) NOT NULL , content LONGTEXT NOT NULL, address varchar(150) NOT NULL, ogTitle varchar(150) NOT NULL, ogDescription text NOT NULL, ogImage varchar(150) NOT NULL, created DATETIME NULL, hit INT unsigned NOT NULL default '0', reviews int(10) unsigned NOT NULL default '0', PRIMARY KEY (id) ) DEFAULT CHARSET=utf8";
     /* 수정  : ALTER TABLE posts CHANGE usedId userId varchar(30) NOT NULL; */
     // 한글 ALTER TABLE posts convert to charset utf8
     connection.query(sql,(err, rows, fields)=>{
