@@ -1,7 +1,7 @@
 var shareUrl;
 
 /* 템플릿으로 명함을 만드는 메서드 */
-window.onload=function(){
+document.getElementById("templateFrame")=function(){
     
 
 
@@ -13,7 +13,7 @@ window.onload=function(){
     let isBoxClosed=1; // 1:툴박스 닫힘, 0= 툴박스 열림
     /* Tool Box 닫는 이벤트 */
     let makerSection = document.getElementById("makerSection");
-    let textEditBoxCover =document.getElementById("textEditBoxCover");
+    let textEditBoxCover = document.getElementById("textEditBoxCover");
     makerSection.addEventListener("click",(e)=>{
         if(e.target.id === "textEditBoxCover"){ // 텍스트 수정 박스 닫기 이벤트
             

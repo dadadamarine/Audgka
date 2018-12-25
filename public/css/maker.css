@@ -3024,3 +3024,8 @@ input.link-address{
   width: 288px;
   margin: 40px auto 30px;
 }
+
+.maker-container{
+  width:100%;
+  height:100%;
+}

@@ -55,18 +55,36 @@
         </div>
     </div>
     <div id="makerSection" class="maker-section">
+
+
     <!-- 우측 편집박스 -->
-
-    <div id="consoleMSG" class=""></div>
-
-    <div id="LogoMark_DE" class="">
-    <h1>DREW</h1>
-        <img src="https://drewendly.github.io/de/svg/DE-Just-Black-30.svg">
-    <h1>ENDLY</h1>
+    <div id="toolBox" class="tool-box">
+        <div class="tool-box_title">
+            <p>본문텍스트</p>
+        </div>
+        <div class="tool-box_content-cover">
+            <ul class="tool-box_content-list">
+                <li class="tool-box_content-list_item"><a href=""> <span>색상</span> black</a></li>
+                <li class="tool-box_content-list_item"><a href=""> <span>색상</span> black</a></li>
+                <li class="tool-box_content-list_item"><a href=""> <span>색상</span> black</a></li>
+                <li class="tool-box_content-list_item"><a href=""> <span>색상</span> black</a></li>
+                <li class="tool-box_content-list_item"><a href=""> <span>색상</span> black</a></li>
+            </ul>
+        </div>
     </div>
 
-    <div id="PGs-Wrap" class="pages-container" >
-        <iframe id="templateFrame" src="/audgka/template/<%= templateId %>" frameborder="0" width=100% height=100% scrolling=no ></iframe>
+    <div id="makerContainer" class="maker-container" >
+        <iframe id="templateFrame" src="/audgka/template/<%= templateId %>" frameborder="0" width=100% height=100% scrolling=no >
+        <!-- 텍스트 편집 박스 -->
+        <div id="textEditBoxCover" class="text-edit-box_cover">
+                <div id="textEditBox" class="text-edit-box">
+                    <div id="textEditToolbar" class="text-edit-box_toolbar">
+            
+                    </div>
+                    <textarea id="textArea" class="text-edit-box_textarea" name="text" id="" cols="30" rows="10" style="width:200px; height:100px; text-align: center; font-size:1rem;"></textarea>
+                </div>
+            </div>
+        </iframe>
    
     </div>
 
