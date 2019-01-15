@@ -405,7 +405,16 @@ app.post('/audgka/:id/make', (req,res)=>{
 
 app.get('/about/:id', (req,res)=>{
     var id = req.params.id;
-    res.render('about/'+id+'.ejs', {});
+    var sql = "SELECT * FROM user_templates WHERE address = ?";
+    var params = [id];
+    connection.query(sql, params, (err, rows, fields)=>{
+        if(err){
+            console.log(err);
+            res.status(500).send("inner DB error");
+        }else{
+            res.render('about/'+id+'.ejs', {ogTitle: rows[0].ogTitle, ogDescription : rows[0].ogDescription, ogImage : rows[0].ogImage });
+        }
+    });
 });
 
 app.get('/about/preview', (req,res)=>{
@@ -433,22 +442,13 @@ app.post('/about/preview', (req,res)=>{
 
 app.get('/audgka/template/:id', (req,res)=>{
     var number = req.params.id;
-    res.render('templates/template_'+number+'.ejs' , {userName : req.session.userName});
+    let ogTitle = "";
+    let ogDescription = "";
+    let ogImage = "";
+    res.render('templates/template_'+number+'.ejs' , {userName : req.session.userName, ogTitle:ogTitle, ogDescription:ogDescription, ogImage:ogImage});
+    // iframe안에서 위의 변수들이 렌더링 되지 않는것을 확인함. 나중에 수정
 });
-/* 
-app.get('/topic/add', (req,res)=>{
-    var sql = "SELECT id, title FROM topic";
-    connection.query(sql, (err, rows, fields)=>{
-        if(err){
-            console.log(err);
-            res.status(500).send("Internal server error");
-        }else{
-            res.render('add.ejs', {topics:rows});
-        }
-        
-    })
 
-}); */
 
 app.get(['/topic', '/topic/:id'], (req,res)=>{
     
